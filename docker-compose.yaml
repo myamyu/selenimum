@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  firefox:
+    image: selenium/standalone-firefox-debug:latest
+    shm_size: 2gb
+    ports:
+    - 4444:4444 # コントローラーのポート
+    - 7900:7900 # noVNCのポート
+    - 5900:5900 # VNCを使う場合のポート
