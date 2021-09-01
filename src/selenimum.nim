@@ -9,7 +9,7 @@ type
     driver*: SeleniumWebDriver
     id*: string
 
-  SeleniumWebDriverException* = object of Exception
+  SeleniumWebDriverException* = object of CatchableError
   SeleniumProtocolException* = object of SeleniumWebDriverException
 
 let

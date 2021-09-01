@@ -10,3 +10,9 @@ srcDir        = "src"
 # Dependencies
 
 requires "nim >= 1.4.8"
+
+# Tasks
+
+task docs, "Generate document":
+  exec "nimble doc src/selenimum.nim -o:htmldocs/index.html"
+
