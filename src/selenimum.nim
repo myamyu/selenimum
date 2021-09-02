@@ -15,7 +15,7 @@ type
 let
   defaultCapabilities* = %*{
     "desiredCapabilities": {
-      "browserName": "firefox"
+      "browserName": "chrome"
     },
     "requiredCapabilities": {}
   }
@@ -41,11 +41,12 @@ proc post(driver: SeleniumWebDriver, path: string, body: JsonNode): JsonNode =
   return parseJson(resp)  
 
 # send DELETE request to selenium
-proc delete(driver: SeleniumWebDriver, path: string): JsonNode =
+proc delete(driver: SeleniumWebDriver, path: string) =
   let client = driver.client
   let baseUrl = driver.baseUrl
-  let resp = client.deleteContent($(baseUrl / path))
-  return parseJson(resp)
+  let resp = client.delete($(baseUrl / path))
+  if resp.code.is4xx or resp.code.is5xx:
+    raise newException(SeleniumProtocolException, resp.status)
 
 #[
   create new session.
@@ -59,7 +60,7 @@ proc newSession*(driver: SeleniumWebDriver, capabilities:JsonNode = defaultCapab
     raise newException(SeleniumProtocolException, "selenium is not ready.")
 
   # create session
-  let sessionId = driver.post("/session", capabilities){"sessionId"}
+  let sessionId = driver.post("/session", capabilities){"value", "sessionId"}
   if sessionId.isNil():
     raise newException(SeleniumProtocolException, "failed to create session.")
 
@@ -76,33 +77,22 @@ proc getSession*(driver: SeleniumWebDriver, sessionId: string): SeleniumSession 
 ]#
 proc deleteSession*(session: SeleniumSession) =
   let driver = session.driver
-  let state = driver.delete(fmt"/session/{session.id}"){"state"}
-  if state.isNil() or state.getStr() != "success":
-    raise newException(SeleniumProtocolException, "failed to delete session.")
+  driver.delete(fmt"/session/{session.id}")
 
 # send GET request to selenium with session
 proc get(session: SeleniumSession, path: string): JsonNode =
   let driver = session.driver
   result = driver.get(fmt"/session/{session.id}{path}")
-  let state = result{"state"}
-  if state.isNil() or state.getStr() != "success":
-    raise newException(SeleniumProtocolException, "failed to get request with session.")
 
 # send POST request to selenium with session
 proc post(session: SeleniumSession, path: string, body: JsonNode): JsonNode =
   let driver = session.driver
   result = driver.post(fmt"/session/{session.id}{path}", body)
-  let state = result{"state"}
-  if state.isNil() or state.getStr() != "success":
-    raise newException(SeleniumProtocolException, "failed to post request with session.")
 
 # send DELETE request to selenium with session
 proc delete(session: SeleniumSession, path: string): JsonNode =
   let driver = session.driver
-  result = driver.delete(fmt"/session/{session.id}{path}")
-  let state = result{"state"}
-  if state.isNil() or state.getStr() != "success":
-    raise newException(SeleniumProtocolException, "failed to delete request with session.")
+  driver.delete(fmt"/session/{session.id}{path}")
 
 #[
   TODO: get timeouts

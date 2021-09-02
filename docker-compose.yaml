@@ -1,10 +1,26 @@
 version: '3'
 
 services:
-  firefox:
-    image: selenium/standalone-firefox-debug:latest
-    shm_size: 2gb
+  selenium-hub:
+    image: selenium/hub:3.141.59-20210830
+    container_name: selenium-hub
     ports:
-    - 4444:4444 # コントローラーのポート
-    - 7900:7900 # noVNCのポート
-    - 5900:5900 # VNCを使う場合のポート
+    - 4444:4444
+    environment:
+    - GRID_MAX_SESSION=10
+
+  firefox: &node
+    image: selenium/node-firefox:3.141.59-20210830
+    container_name: selenium-firefox
+    shm_size: 2gb
+    depends_on:
+    - selenium-hub
+    environment:
+    - HUB_HOST=selenium-hub
+    - HUB_PORT=4444
+    - NODE_MAX_SESSION=5
+
+  chrome:
+    <<: *node
+    image: selenium/node-chrome:3.141.59-20210830
+    container_name: selenium-chrome
