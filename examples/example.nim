@@ -24,7 +24,17 @@ proc main() =
     session.navigateTo("https://www.yahoo.co.jp/")
     info("Get URL...")
     let url = session.getCurrentUrl()
-    debug(fmt"URL:{$url}")
+    debug(fmt"URL: {$url}")
+    let title = session.getTitle()
+    debug(fmt"title: {title}")
+    let winRect = session.getWindowRect()
+    debug(fmt"rect: {$winRect}")
+    let cookies = session.getAllCookies()
+    debug(fmt"cookies: {$cookies}")
+
+    # sourceはたくさん出るので封印
+    # let source = session.getPageSource()
+    # echo source
   except SeleniumWebDriverException as e:
     error("Selenium ERROR!!", e.getStackTrace())
   except Exception as e:

@@ -12,6 +12,22 @@ type
   SeleniumWebDriverException* = object of CatchableError
   SeleniumProtocolException* = object of SeleniumWebDriverException
 
+  Rect* = object
+    x*: int
+    y*: int
+    width*: int
+    height*: int
+
+  Cookie* = object
+    domain*: string
+    expiry*: int
+    httpOnly*: bool
+    name*: string
+    path*: string
+    sameSite*: string
+    secure*: bool
+    value*: string
+
 let
   defaultCapabilities* = %*{
     "desiredCapabilities": {
@@ -19,6 +35,21 @@ let
     },
     "requiredCapabilities": {}
   }
+
+#[
+  JsonNodeをCookie objectへ
+]#
+proc convToCookie(obj: JsonNode): Cookie =
+  return Cookie(
+    domain: obj{"domain"}.getStr(),
+    expiry: obj{"expiry"}.getInt(),
+    httpOnly: obj{"httpOnly"}.getBool(),
+    name: obj{"name"}.getStr(),
+    path: obj{"path"}.getStr(),
+    sameSite: obj{"sameSite"}.getStr(),
+    secure: obj{"secure"}.getBool(),
+    value: obj{"value"}.getStr(),
+  )
 
 #[
   create new SeleniumWebDriver
@@ -142,9 +173,12 @@ proc getCurrentUrl*(session: SeleniumSession): Uri =
 ]#
 
 #[
-  TODO: get title
+  get title
   https://w3c.github.io/webdriver/#dfn-get-title
 ]#
+proc getTitle*(session: SeleniumSession): string =
+  let resp = session.get("/title")
+  return resp{"value"}.getStr()
 
 #[
   TODO: get window handle
@@ -182,9 +216,18 @@ proc getCurrentUrl*(session: SeleniumSession): Uri =
 ]#
 
 #[
-  TODO: get window rect
+  get window rect
   https://w3c.github.io/webdriver/#dfn-get-window-rect
 ]#
+proc getWindowRect*(session: SeleniumSession): Rect =
+  let resp = session.get("/window/rect")
+  let obj = resp{"value"}
+  return Rect(
+    x: obj{"x"}.getInt(),
+    y: obj{"y"}.getInt(),
+    width: obj{"width"}.getInt(),
+    height: obj{"height"}.getInt(),
+  )
 
 #[
   TODO: set window rect
@@ -300,8 +343,12 @@ proc getCurrentUrl*(session: SeleniumSession): Uri =
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-get-page-source
+  get page source
+  https://w3c.github.io/webdriver/#dfn-get-page-source
 ]#
+proc getPageSource*(session: SeleniumSession): string =
+  let resp = session.get("/source")
+  return resp{"value"}.getStr()
 
 #[
   TODO: https://w3c.github.io/webdriver/#dfn-execute-script
@@ -312,8 +359,14 @@ proc getCurrentUrl*(session: SeleniumSession): Uri =
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-get-all-cookies
+  get all cookies
+  https://w3c.github.io/webdriver/#dfn-get-all-cookies
 ]#
+proc getAllCookies*(session: SeleniumSession): seq[Cookie] =
+  let resp = session.get("/cookie")
+  result = @[]
+  for obj in resp{"value"}:
+    result.add(obj.convToCookie())
 
 #[
   TODO: https://w3c.github.io/webdriver/#dfn-get-named-cookie
