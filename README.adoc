@@ -1,11 +1,14 @@
 :toc: left
-:sectnums:
 
-= selenimum
+= Selenimum
 
-Seleniumをnimで操作する
+== About
 
-== seleniumコンテナを起動
+WebDriver for Selenium by Nim.
+
+== Usage
+
+=== run selenium
 
 [source,sh]
 ----
@@ -19,12 +22,6 @@ or
 docker-compose start
 ----
 
-=== 生存確認
+=== control selenium
 
-NOTE: 参考： https://i-beam.org/2019/09/08/webdriver-with-curl-01/
-
-コントロールするpathは `/wd/hub/` になる
-[source,sh]
-----
-curl http://localhost:4444/wd/hub/status
-----
+TODO 書く
