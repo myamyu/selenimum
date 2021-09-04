@@ -11,6 +11,8 @@ type
 
   SeleniumWebDriverException* = object of CatchableError
   SeleniumProtocolException* = object of SeleniumWebDriverException
+  SeleniumServerException* = object of SeleniumProtocolException
+  SeleniumNotFoundException* = object of SeleniumProtocolException
 
   Rect* = object
     x*: int
@@ -52,6 +54,12 @@ proc convToCookie(obj: JsonNode): Cookie =
   )
 
 #[
+  is empty cookie?
+]#
+proc isEmpty*(c: Cookie): bool =
+  c.name == "" and c.value == ""
+
+#[
   create new SeleniumWebDriver
 ]#
 proc newSeleniumWebDriver*(baseUrl:string = "http://localhost:4444/wd/hub"): SeleniumWebDriver =
@@ -61,23 +69,35 @@ proc newSeleniumWebDriver*(baseUrl:string = "http://localhost:4444/wd/hub"): Sel
 proc get(driver: SeleniumWebDriver, path: string): JsonNode =
   let client = driver.client
   let baseUrl = driver.baseUrl
-  let resp = client.getContent($(baseUrl / path))
-  return parseJson(resp)
+  let resp = client.get($(baseUrl / path))
+  if resp.code.is4xx:
+    raise newException(SeleniumNotFoundException, resp.status)
+  if resp.code.is5xx:
+    raise newException(SeleniumServerException, resp.status)
+  let body = resp.body
+  return parseJson(body)
 
 # send POST request to selenium
 proc post(driver: SeleniumWebDriver, path: string, body: JsonNode): JsonNode =
   let client = driver.client
   let baseUrl = driver.baseUrl
-  let resp = client.postContent($(baseUrl / path), $body)
-  return parseJson(resp)  
+  let resp = client.post($(baseUrl / path), $body)
+  if resp.code.is4xx:
+    raise newException(SeleniumNotFoundException, resp.status)
+  if resp.code.is5xx:
+    raise newException(SeleniumServerException, resp.status)
+  let body = resp.body
+  return parseJson(body)
 
 # send DELETE request to selenium
 proc delete(driver: SeleniumWebDriver, path: string) =
   let client = driver.client
   let baseUrl = driver.baseUrl
   let resp = client.delete($(baseUrl / path))
-  if resp.code.is4xx or resp.code.is5xx:
-    raise newException(SeleniumProtocolException, resp.status)
+  if resp.code.is4xx:
+    raise newException(SeleniumNotFoundException, resp.status)
+  if resp.code.is5xx:
+    raise newException(SeleniumServerException, resp.status)
 
 #[
   create new session.
@@ -369,8 +389,18 @@ proc getAllCookies*(session: SeleniumSession): seq[Cookie] =
     result.add(obj.convToCookie())
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-get-named-cookie
+  get named cookie
+  https://w3c.github.io/webdriver/#dfn-get-named-cookie
 ]#
+proc getNamedCookie*(session: SeleniumSession, name: string): Cookie =
+  try:
+    let resp = session.get(fmt"/cookie/{name}")
+    echo $resp
+    return resp{"value"}.convToCookie()
+  except SeleniumNotFoundException:
+    return Cookie()
+  except:
+    raise
 
 #[
   TODO: https://w3c.github.io/webdriver/#dfn-adding-a-cookie

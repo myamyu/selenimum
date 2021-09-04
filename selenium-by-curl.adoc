@@ -1,0 +1,63 @@
+:toc: left
+
+= seleniumをcurlでうごかす
+
+== status確認
+
+[source,sh]
+----
+curl -i \
+"http://localhost:4444/wd/hub/status"
+----
+
+NOTE: $.value.ready == true で準備OK
+
+== session作成
+
+[source,sh]
+----
+curl -i -X POST \
+-d '{"desiredCapabilities": {"browserName": "chrome"}, "requiredCapabilities": {}}' \
+"http://localhost:4444/wd/hub/session"
+----
+
+NOTE: $.value.sessionId の値を覚えておく
+
+== navigateTo
+
+[source,sh]
+----
+curl -i -X POST \
+-d '{"url": "https://www.yahoo.co.jp/"}' \
+"http://localhost:4444/wd/hub/session/${SESSIONID}/url"
+----
+
+NOTE: HTTP Responseが200ならば大丈夫
+
+== title取得
+
+[source,sh]
+----
+curl -i \
+"http://localhost:4444/wd/hub/session/${SESSIONID}/title"
+----
+
+NOTE: $.valueにtitleが入る
+
+== cookie全取得
+
+[source,sh]
+----
+curl -i \
+"http://localhost:4444/wd/hub/session/${SESSIONID}/cookie"
+----
+
+NOTE: $.valueにCookieオブジェクトのリストが入る
+
+== 名前を指定してCookieを取得
+
+[source,sh]
+----
+curl -i \
+"http://localhost:4444/wd/hub/session/${SESSIONID}/cookie/hoge"
+----

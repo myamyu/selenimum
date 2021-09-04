@@ -31,6 +31,11 @@ proc main() =
     debug(fmt"rect: {$winRect}")
     let cookies = session.getAllCookies()
     debug(fmt"cookies: {$cookies}")
+    let cookie = session.getNamedCookie("__gads")
+    if cookie.isEmpty:
+      debug(fmt"cookie is empty.")
+    else:
+      debug(fmt"cookie: {$cookie}")
 
     # sourceはたくさん出るので封印
     # let source = session.getPageSource()
