@@ -3,7 +3,7 @@
 
 = Selenimum
 
-Selenimum is inspired by https://github.com/dom96/webdriver.
+Selenimum is inspired by https://github.com/dom96/webdriver[dom96/webdriver].
 
 == About
 
