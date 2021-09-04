@@ -36,6 +36,8 @@ proc main() =
       debug(fmt"cookie is empty.")
     else:
       debug(fmt"cookie: {$cookie}")
+    let timeouts = session.getTimeouts()
+    debug(fmt"timeouts: {$timeouts}")
 
     # sourceはたくさん出るので封印
     # let source = session.getPageSource()
