@@ -1,10 +1,13 @@
 :toc: left
+:sectnums:
 
 = Selenimum
 
+Selenimum is inspired by https://github.com/dom96/webdriver.
+
 == About
 
-WebDriver for Selenium by Nim.
+WebDriver for Selenium(selenium-hub) by Nim.
 
 == Usage
 
@@ -22,6 +25,58 @@ or
 docker-compose start
 ----
 
-=== control selenium
+=== control selenium example
 
-TODO 書く
+[source,nim]
+----
+import selenimum, uri
+import logging, strformat
+
+const fmtStr = "$date $time - [$levelname] "
+let logger = newConsoleLogger(fmtStr=fmtStr)
+addHandler(logger)
+
+proc main() =
+  info("start the example.")
+
+  let
+    driver = newSeleniumWebDriver()
+    session = driver.newSession()
+
+  info(fmt"session is [{session.id}]")
+
+  defer:
+    info(fmt"delete session [{session.id}]")
+    session.deleteSession()
+    info("end of example.")
+
+  try:
+    info("Navigate to...")
+    session.navigateTo("https://www.yahoo.co.jp/")
+    let url = session.getCurrentUrl()
+    info(fmt"URL: {$url}")
+    let title = session.getTitle()
+    info(fmt"title: {title}")
+    let winRect = session.getWindowRect()
+    info(fmt"window rect: {$winRect}")
+  except SeleniumWebDriverException as e:
+    error("Selenium ERROR!!", e.getStackTrace())
+  except Exception as e:
+    error("ERROR!!", e.getStackTrace())
+
+main()
+----
+
+if you want to use firefox.
+
+[source,nim]
+----
+let
+  capabilities = %*{
+    "desiredCapabilities": {
+      "browserName": "firefox"
+    },
+    "requiredCapabilities": {}
+  }
+  session = driver.newSession(capabilities=capabilities)
+----
