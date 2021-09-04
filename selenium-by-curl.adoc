@@ -23,6 +23,14 @@ curl -i -X POST \
 
 NOTE: $.value.sessionId の値を覚えておく
 
+== session削除
+
+[source,sh]
+----
+curl -i -X DELETE \
+"http://localhost:4444/wd/hub/session/${SESSION}"
+----
+
 == navigateTo
 
 [source,sh]
@@ -59,5 +67,6 @@ NOTE: $.valueにCookieオブジェクトのリストが入る
 [source,sh]
 ----
 curl -i \
-"http://localhost:4444/wd/hub/session/${SESSIONID}/cookie/hoge"
+"http://localhost:4444/wd/hub/session/${SESSIONID}/cookie/cookieName"
 ----
+
