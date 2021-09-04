@@ -11,18 +11,14 @@ WebDriver for Selenium(selenium-hub) by Nim.
 
 == Usage
 
-=== run selenium
+=== launch selenium hub
+
+copy link:./docker-compose.yaml[docker-compose.yaml] to your woriking directory. +
+and up by docker-compose.
 
 [source,sh]
 ----
 docker-compose up --build
-----
-
-or
-
-[source,sh]
-----
-docker-compose start
 ----
 
 === control selenium example
