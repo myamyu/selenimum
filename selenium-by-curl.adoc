@@ -53,7 +53,7 @@ NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessio
 ----
 curl -i -X POST \
 -d '{"url": "https://www.yahoo.co.jp/"}' \
-"http://localhost:4444/wd/hub/session/${SESSIONID}/url"
+"http://localhost:4444/wd/hub/session/${SESSION}/url"
 ----
 
 TIP: HTTP Responseが200ならば大丈夫
@@ -75,7 +75,25 @@ NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessio
 [source,sh]
 ----
 curl -i \
-"http://localhost:4444/wd/hub/session/${SESSIONID}/title"
+"http://localhost:4444/wd/hub/session/${SESSION}/title"
+----
+
+=== 戻る
+
+[source,sh]
+----
+curl -i -X POST \
+-d '{}' \
+"http://localhost:4444/wd/hub/session/${SESSION}/back"
+----
+
+=== 進む
+
+[source,sh]
+----
+curl -i -X POST \
+-d '{}' \
+"http://localhost:4444/wd/hub/session/${SESSION}/forward"
 ----
 
 == cookie
@@ -87,7 +105,7 @@ NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessio
 [source,sh]
 ----
 curl -i \
-"http://localhost:4444/wd/hub/session/${SESSIONID}/cookie"
+"http://localhost:4444/wd/hub/session/${SESSION}/cookie"
 ----
 
 TIP: $.valueにCookieオブジェクトのリストが入る
@@ -99,7 +117,7 @@ NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessio
 [source,sh]
 ----
 curl -i \
-"http://localhost:4444/wd/hub/session/${SESSIONID}/cookie/cookieName"
+"http://localhost:4444/wd/hub/session/${SESSION}/cookie/cookieName"
 ----
 
 === 名前を指定してCookieを削除
@@ -109,5 +127,5 @@ NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessio
 [source,sh]
 ----
 curl -i -X DELETE \
-"http://localhost:4444/wd/hub/session/${SESSIONID}/cookie/cookieName"
+"http://localhost:4444/wd/hub/session/${SESSION}/cookie/cookieName"
 ----
