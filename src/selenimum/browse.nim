@@ -24,14 +24,19 @@ proc getCurrentUrl*(session: SeleniumSession): Uri =
   return resp{"value"}.getStr().parseUri()
 
 #[
-  TODO: back
+  back
   https://w3c.github.io/webdriver/#dfn-back
 ]#
+proc back*(session: SeleniumSession) =
+  discard session.post("/back", %*{})
 
 #[
-  TODO: forward
+  forward
   https://w3c.github.io/webdriver/#dfn-forward
 ]#
+proc forward*(session: SeleniumSession) =
+  discard session.post("/forward", %*{})
+
 
 #[
   TODO: refresh
