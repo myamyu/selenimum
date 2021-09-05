@@ -5,6 +5,11 @@ type
   SeleniumWebDriver* = ref object
     baseUrl*: Uri
     client*: HttpClient
+  
+  SeleniumStatus* = object
+    ready*: bool
+    message*: string
+    buildVersion*: string
 
 #[
   create new SeleniumWebDriver
@@ -17,10 +22,7 @@ proc get*(driver: SeleniumWebDriver, path: string): JsonNode =
   let client = driver.client
   let baseUrl = driver.baseUrl
   let resp = client.get($(baseUrl / path))
-  if resp.code.is4xx:
-    raise newException(SeleniumNotFoundException, resp.status)
-  if resp.code.is5xx:
-    raise newException(SeleniumServerException, resp.status)
+  resp.checkHttpResponse()
   let body = resp.body
   return parseJson(body)
 
@@ -29,10 +31,7 @@ proc post*(driver: SeleniumWebDriver, path: string, body: JsonNode): JsonNode =
   let client = driver.client
   let baseUrl = driver.baseUrl
   let resp = client.post($(baseUrl / path), $body)
-  if resp.code.is4xx:
-    raise newException(SeleniumNotFoundException, resp.status)
-  if resp.code.is5xx:
-    raise newException(SeleniumServerException, resp.status)
+  resp.checkHttpResponse()
   let body = resp.body
   return parseJson(body)
 
@@ -41,7 +40,17 @@ proc delete*(driver: SeleniumWebDriver, path: string) =
   let client = driver.client
   let baseUrl = driver.baseUrl
   let resp = client.delete($(baseUrl / path))
-  if resp.code.is4xx:
-    raise newException(SeleniumNotFoundException, resp.status)
-  if resp.code.is5xx:
-    raise newException(SeleniumServerException, resp.status)
+  resp.checkHttpResponse()
+
+#[
+  status
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#status
+]#
+proc status*(driver: SeleniumWebDriver): SeleniumStatus =
+  let resp = driver.get("/status")
+  let obj = resp{"value"}
+  return SeleniumStatus(
+    ready: obj{"ready"}.getBool(),
+    message: obj{"message"}.getStr(),
+    buildVersion: obj{"build", "version"}.getStr(),
+  )
