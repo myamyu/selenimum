@@ -2,7 +2,13 @@
 
 = seleniumをcurlでうごかす
 
-== status確認
+NOTE: 参考 https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol
+
+== webdriver
+
+=== status確認
+
+NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#status
 
 [source,sh]
 ----
@@ -10,9 +16,13 @@ curl -i \
 "http://localhost:4444/wd/hub/status"
 ----
 
-NOTE: $.value.ready == true で準備OK
+TIP: $.value.ready == true で準備OK
 
-== session作成
+== session
+
+=== session作成
+
+NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#session
 
 [source,sh]
 ----
@@ -21,9 +31,11 @@ curl -i -X POST \
 "http://localhost:4444/wd/hub/session"
 ----
 
-NOTE: $.value.sessionId の値を覚えておく
+TIP: $.value.sessionId の値を覚えておく
 
-== session削除
+=== session削除
+
+NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionid
 
 [source,sh]
 ----
@@ -31,7 +43,11 @@ curl -i -X DELETE \
 "http://localhost:4444/wd/hub/session/${SESSION}"
 ----
 
-== navigateTo
+== browse
+
+=== navigateTo
+
+NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidurl
 
 [source,sh]
 ----
@@ -40,9 +56,21 @@ curl -i -X POST \
 "http://localhost:4444/wd/hub/session/${SESSIONID}/url"
 ----
 
-NOTE: HTTP Responseが200ならば大丈夫
+TIP: HTTP Responseが200ならば大丈夫
 
-== title取得
+=== 現在のURL取得
+
+NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidurl
+
+[source,sh]
+----
+curl -i \
+"http://localhost:4444/wd/hub/session/${SESSION}/url"
+----
+
+=== title取得
+
+NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidtitle
 
 [source,sh]
 ----
@@ -50,9 +78,11 @@ curl -i \
 "http://localhost:4444/wd/hub/session/${SESSIONID}/title"
 ----
 
-NOTE: $.valueにtitleが入る
+== cookie
 
-== cookie全取得
+=== cookie全取得
+
+NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidcookie
 
 [source,sh]
 ----
@@ -60,9 +90,11 @@ curl -i \
 "http://localhost:4444/wd/hub/session/${SESSIONID}/cookie"
 ----
 
-NOTE: $.valueにCookieオブジェクトのリストが入る
+TIP: $.valueにCookieオブジェクトのリストが入る
 
-== 名前を指定してCookieを取得
+=== 名前を指定してCookieを取得
+
+NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidcookiename
 
 [source,sh]
 ----
@@ -70,3 +102,12 @@ curl -i \
 "http://localhost:4444/wd/hub/session/${SESSIONID}/cookie/cookieName"
 ----
 
+=== 名前を指定してCookieを削除
+
+NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidcookiename
+
+[source,sh]
+----
+curl -i -X DELETE \
+"http://localhost:4444/wd/hub/session/${SESSIONID}/cookie/cookieName"
+----
