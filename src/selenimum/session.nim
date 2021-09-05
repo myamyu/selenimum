@@ -21,13 +21,12 @@ let
 
 #[
   create new session.
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#session
 ]#
 proc newSession*(driver: SeleniumWebDriver, capabilities:JsonNode = defaultCapabilities): SeleniumSession =
   # check status
-  let ready = driver.get("/status"){"value", "ready"}
-  if ready.isNil():
-    raise newException(SeleniumWebDriverException, "selenium API Error.")
-  if not ready.getBool():
+  let status = driver.status()
+  if not status.ready:
     raise newException(SeleniumProtocolException, "selenium is not ready.")
 
   # create session
