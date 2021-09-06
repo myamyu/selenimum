@@ -3,29 +3,46 @@ import session, errors
 
 type
   Cookie* = object
-    domain*: string
-    expiry*: int
-    httpOnly*: bool
     name*: string
-    path*: string
-    sameSite*: string
-    secure*: bool
     value*: string
+    path*: string
+    domain*: string
+    secure*: bool
+    httpOnly*: bool
+    expiry*: int
+    sameSite*: string
 
 #[
   JsonNodeをCookie objectへ
 ]#
 proc convToCookie(obj: JsonNode): Cookie =
   return Cookie(
-    domain: obj{"domain"}.getStr(),
-    expiry: obj{"expiry"}.getInt(),
-    httpOnly: obj{"httpOnly"}.getBool(),
     name: obj{"name"}.getStr(),
-    path: obj{"path"}.getStr(),
-    sameSite: obj{"sameSite"}.getStr(),
-    secure: obj{"secure"}.getBool(),
     value: obj{"value"}.getStr(),
+    path: obj{"path"}.getStr(),
+    domain: obj{"domain"}.getStr(),
+    secure: obj{"secure"}.getBool(),
+    httpOnly: obj{"httpOnly"}.getBool(),
+    expiry: obj{"expiry"}.getInt(),
+    sameSite: obj{"sameSite"}.getStr(),
   )
+
+#[
+  cookie to json
+]#
+proc `%`*(cookie: Cookie): JsonNode =
+  result = %*{
+    "name": cookie.name,
+    "value": cookie.value,
+  }
+  if cookie.path != "":
+    result{"path"} = %cookie.path
+  if cookie.domain != "":
+    result{"domain"} = %cookie.domain
+  if cookie.secure:
+    result{"secure"} = %cookie.secure
+  if cookie.expiry > 0:
+    result{"expiry"} = %cookie.expiry
 
 #[
   is empty cookie?
@@ -50,7 +67,6 @@ proc getAllCookies*(session: SeleniumSession): seq[Cookie] =
 proc getNamedCookie*(session: SeleniumSession, name: string): Cookie =
   try:
     let resp = session.get(fmt"/cookie/{name}")
-    echo $resp
     return resp{"value"}.convToCookie()
   except SeleniumNotFoundException:
     return Cookie()
@@ -58,13 +74,24 @@ proc getNamedCookie*(session: SeleniumSession, name: string): Cookie =
     raise
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-adding-a-cookie
+  set cookie
+  https://w3c.github.io/webdriver/#dfn-adding-a-cookie
 ]#
+proc setCookie*(session: SeleniumSession, cookie: Cookie) =
+  discard session.post("/cookie", %*{
+    "cookie": %cookie,
+  })
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-delete-cookie
+  delete cookie
+  https://w3c.github.io/webdriver/#dfn-delete-cookie
 ]#
+proc deleteCookie*(session: SeleniumSession, name: string) =
+  session.delete(fmt"/cookie/{name}")
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-delete-all-cookies
+  delete all cookies
+  https://w3c.github.io/webdriver/#dfn-delete-all-cookies
 ]#
+proc deleteAllCookies*(session: SeleniumSession) =
+  session.delete("/cookie")

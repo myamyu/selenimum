@@ -110,6 +110,19 @@ curl -i \
 
 TIP: $.valueにCookieオブジェクトのリストが入る
 
+=== cookieをセット
+
+NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidcookie
+
+[source,sh]
+----
+curl -X POST -i \
+-d '{"cookie": {"name": "hoge", "value": "fuga"}}' \
+"http://localhost:4444/wd/hub/session/${SESSION}/cookie"
+----
+
+TIP: $.valueにCookieオブジェクトのリストが入る
+
 === 名前を指定してCookieを取得
 
 NOTE: https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidcookiename
