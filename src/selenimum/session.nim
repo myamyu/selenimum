@@ -60,7 +60,7 @@ proc post*(session: SeleniumSession, path: string, body: JsonNode): JsonNode =
   result = driver.post(fmt"/session/{session.id}{path}", body)
 
 # send DELETE request to selenium with session
-proc delete*(session: SeleniumSession, path: string): JsonNode =
+proc delete*(session: SeleniumSession, path: string) =
   let driver = session.driver
   driver.delete(fmt"/session/{session.id}{path}")
 
