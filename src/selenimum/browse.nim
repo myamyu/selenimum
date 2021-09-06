@@ -39,9 +39,11 @@ proc forward*(session: SeleniumSession) =
 
 
 #[
-  TODO: refresh
+  refresh
   https://w3c.github.io/webdriver/#dfn-refresh
 ]#
+proc refresh*(session: SeleniumSession) =
+  discard session.post("/refresh", %*{})
 
 #[
   get title
