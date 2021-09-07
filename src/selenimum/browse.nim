@@ -62,14 +62,6 @@ proc getPageSource*(session: SeleniumSession): string =
   return resp{"value"}.getStr()
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-perform-actions
-]#
-
-#[
-  TODO: https://w3c.github.io/webdriver/#dfn-release-actions
-]#
-
-#[
   TODO: https://w3c.github.io/webdriver/#dfn-dismiss-alert
 ]#
 
