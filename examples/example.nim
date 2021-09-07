@@ -64,6 +64,16 @@ proc main() =
     var cookies = session.getAllCookies()
     debug(fmt"cookies: {$cookies}")
 
+    # element
+    var elem = session.findElement(query="h1")
+    var elemText = elem.getText()
+    debug(fmt"h1 text: {elemText}")
+
+    var elems = session.findElements(query="#ToolList > ul > li a > p > span:first-child > span")
+    for e in elems:
+      elemText = e.getText()
+      debug(fmt"element text: {elemText}")
+
     # sourceはたくさん出るので封印
     # let source = session.getPageSource()
     # echo source
