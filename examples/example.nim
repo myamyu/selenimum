@@ -77,6 +77,9 @@ proc main() =
     # sourceはたくさん出るので封印
     # let source = session.getPageSource()
     # echo source
+  except SeleniumNotFoundException as e:
+    error("Not Found Exception!!", e.msg)
+    echo e.getStackTrace()
   except SeleniumWebDriverException as e:
     error("Selenium ERROR!!", e.msg)
     echo e.getStackTrace()
