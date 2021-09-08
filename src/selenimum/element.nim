@@ -112,11 +112,6 @@ proc findElementsByName*(session: SeleniumSession, name: string): seq[Element] =
   return session.findElements(query=name, strategy="name")
 
 #[
-  TODO: active element
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementactive
-]#
-
-#[
   find element from element
   https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelement
 ]#
@@ -214,9 +209,12 @@ proc findElementsByName*(element: Element, name: string): seq[Element] =
   return element.findElements(query=name, strategy="name")
 
 #[
-  TODO: click element
+  click element
   https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidclick
 ]#
+proc click*(element: Element) =
+  discard element.post("/click", %*{})
+
 
 #[
   TODO: submit element

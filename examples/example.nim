@@ -1,5 +1,5 @@
-import selenimum, uri
-import logging, strformat
+import logging, strformat, uri, os
+import selenimum
 
 const fmtStr = "$date $time - [$levelname] "
 let logger = newConsoleLogger(fmtStr=fmtStr)
@@ -25,7 +25,7 @@ proc main() =
     info("Get URL...")
     var url = session.getCurrentUrl()
     debug(fmt"URL: {$url}")
-    let title = session.getTitle()
+    var title = session.getTitle()
     debug(fmt"title: {title}")
     let winRect = session.getWindowRect()
     debug(fmt"rect: {$winRect}")
@@ -65,7 +65,7 @@ proc main() =
     debug(fmt"cookies: {$cookies}")
 
     # element
-    var elem = session.findElement(query="h1")
+    var elem = session.findElementByTagName("h1")
     var elemText = elem.getText()
     debug(fmt"h1 text: {elemText}")
 
@@ -73,6 +73,17 @@ proc main() =
     for e in elems:
       elemText = e.getText()
       debug(fmt"element text: {elemText}")
+
+    # クリック
+    elem = session.findElement(query="ニュース", strategy="link text")
+    elemText = elem.getText()
+    debug(fmt"link text: {elemText}")
+    elem.click()
+    sleep(300)
+    url = session.getCurrentUrl()
+    debug(fmt"URL: {$url}")
+    title = session.getTitle()
+    debug(fmt"title: {title}")
 
     # sourceはたくさん出るので封印
     # let source = session.getPageSource()
