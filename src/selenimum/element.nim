@@ -15,16 +15,6 @@ proc post*(element:Element, path: string, body: JsonNode): JsonNode =
   return element.session.post(fmt"/element/{element.id}{path}", body)
 
 #[
-  TODO: get active element
-  https://w3c.github.io/webdriver/#dfn-get-active-element
-]#
-
-#[
-  TODO: get element shadow root
-  https://w3c.github.io/webdriver/#dfn-get-element-shadow-root
-]#
-
-#[
   find element
   https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelement
 ]#
@@ -120,6 +110,11 @@ proc findElementsByTagName*(session: SeleniumSession, tagName: string): seq[Elem
 ]#
 proc findElementsByName*(session: SeleniumSession, name: string): seq[Element] =
   return session.findElements(query=name, strategy="name")
+
+#[
+  TODO: active element
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementactive
+]#
 
 #[
   find element from element
@@ -219,20 +214,13 @@ proc findElementsByName*(element: Element, name: string): seq[Element] =
   return element.findElements(query=name, strategy="name")
 
 #[
-  TODO: is element selected
-  https://w3c.github.io/webdriver/#dfn-is-element-selected
+  TODO: click element
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidclick
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-get-element-attribute
-]#
-
-#[
-  TODO: https://w3c.github.io/webdriver/#dfn-get-element-property
-]#
-
-#[
-  TODO: https://w3c.github.io/webdriver/#dfn-get-element-css-value
+  TODO: submit element
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidsubmit
 ]#
 
 #[
@@ -244,37 +232,56 @@ proc getText*(element: Element): string =
   return resp{"value"}.getStr()
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-get-element-tag-name
+  TODO: Send a sequence of key strokes to an element.
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidvalue
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-get-element-rect
+  TODO: get element name
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidname
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-is-element-enabled
+  TODO: clear element value(text INPUT, TEXTAREA)
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidclear
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-get-computed-role
+  TODO: is selected element(OPTION, checkbox, radio)
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidselected
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-get-computed-label
+  TODO: is enabled element
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidenabled
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-element-click
+  TODO: get element attribute
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidattributename
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-element-clear
+  TODO: is displayed element
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementiddisplayed
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-element-send-keys
+  TODO: get element location
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidlocation
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-take-element-screenshot
+  TODO: get element location in view
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidlocation_in_view
+]#
+
+#[
+  TODO: get element size
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidsize
+]#
+
+#[
+  TODO: get element css property
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidcsspropertyname
 ]#
