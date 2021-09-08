@@ -122,24 +122,101 @@ proc findElementsByName*(session: SeleniumSession, name: string): seq[Element] =
   return session.findElements(query=name, strategy="name")
 
 #[
-  TODO: find element from element
-  https://w3c.github.io/webdriver/#dfn-find-element-from-element
+  find element from element
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelement
 ]#
+proc findElement*(element: Element, query: string, strategy: string = "css selector"): Element =
+  let body = %*{
+    "using": strategy,
+    "value": query,
+  }
+  let resp = element.post("/element", body)
+  result = Element(session: element.session)
+  for item in resp{"value"}.pairs:
+    result.id = item.val.getStr()
+    break
 
 #[
-  TODO: find elements from element
-  https://w3c.github.io/webdriver/#dfn-find-elements-from-element
+  find element by css selector
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelement
 ]#
+proc findElementBySelector*(element: Element, query: string): Element =
+  return element.findElement(query=query)
 
 #[
-  TODO: find element from shadow root
-  https://w3c.github.io/webdriver/#dfn-find-element-from-shadow-root
+  find element by id attribute
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelement
 ]#
+proc findElementById*(element: Element, id: string): Element =
+  return element.findElement(query=id, strategy="id")
 
 #[
-  TODO: find elements from shadow root
-  https://w3c.github.io/webdriver/#dfn-find-elements-from-shadow-root
+  find element by XPath
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelement
 ]#
+proc findElementByXPath*(element: Element, xpath: string): Element =
+  return element.findElement(query=xpath, strategy="xpath")
+
+#[
+  find element by tag name
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelement
+]#
+proc findElementByTagName*(element: Element, tagName: string): Element =
+  return element.findElement(query=tagName, strategy="tag name")
+
+#[
+  find element by name attribute
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelement
+]#
+proc findElementByName*(element: Element, name: string): Element =
+  return element.findElement(query=name, strategy="name")
+
+#[
+  find elements from element
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelements
+]#
+proc findElements*(element: Element, query: string, strategy: string = "css selector"): seq[Element] =
+  let body = %*{
+    "using": strategy,
+    "value": query,
+  }
+  let resp = element.post("/elements", body)
+  result = @[]
+  for obj in resp{"value"}:
+    for item in obj.pairs:
+      result.add(Element(
+        session: element.session,
+        id: item.val.getStr()
+      ))
+      break
+
+#[
+  find elements by css selector
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelements
+]#
+proc findElementsBySelector*(element: Element, query: string): seq[Element] =
+  return element.findElements(query=query)
+
+#[
+  find element by XPath
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelements
+]#
+proc findElementsByXPath*(element: Element, xpath: string): seq[Element] =
+  return element.findElements(query=xpath, strategy="xpath")
+
+#[
+  find element by tag name
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelements
+]#
+proc findElementsByTagName*(element: Element, tagName: string): seq[Element] =
+  return element.findElements(query=tagName, strategy="tag name")
+
+#[
+  find element by name attribute
+  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidelements
+]#
+proc findElementsByName*(element: Element, name: string): seq[Element] =
+  return element.findElements(query=name, strategy="name")
 
 #[
   TODO: is element selected
