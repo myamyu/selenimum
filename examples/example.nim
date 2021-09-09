@@ -73,17 +73,28 @@ proc main() =
     for e in elems:
       elemText = e.getText()
       debug(fmt"element text: {elemText}")
-
-    # クリック
-    elem = session.findElement(query="ニュース", strategy="link text")
-    elemText = elem.getText()
-    debug(fmt"link text: {elemText}")
+    
+    # yahoo検索
+    elem = session.findElement(query="form input")
+    elem.setValue("どんたこす")
+    elem = session.findElement(query="form button")
     elem.click()
     sleep(300)
     url = session.getCurrentUrl()
     debug(fmt"URL: {$url}")
     title = session.getTitle()
     debug(fmt"title: {title}")
+
+    # クリック
+    # elem = session.findElement(query="ニュース", strategy="link text")
+    # elemText = elem.getText()
+    # debug(fmt"link text: {elemText}")
+    # elem.click()
+    # sleep(300)
+    # url = session.getCurrentUrl()
+    # debug(fmt"URL: {$url}")
+    # title = session.getTitle()
+    # debug(fmt"title: {title}")
 
     # sourceはたくさん出るので封印
     # let source = session.getPageSource()
