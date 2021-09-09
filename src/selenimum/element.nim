@@ -209,14 +209,17 @@ proc setValue*(element: Element, val: string) =
   discard element.post("/value", body)
 
 #[
-  TODO: get element name
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidname
+  get element's tag name
 ]#
+proc getTagName*(element: Element): string =
+  let resp = element.get("/name")
+  return resp{"value"}.getStr()
 
 #[
-  TODO: clear element value(text INPUT, TEXTAREA)
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidclear
+  clear element value(text INPUT, TEXTAREA)
 ]#
+proc clearValue*(element: Element) =
+  discard element.post("/clear", %*{})
 
 #[
   TODO: is selected element(OPTION, checkbox, radio)
@@ -229,9 +232,11 @@ proc setValue*(element: Element, val: string) =
 ]#
 
 #[
-  TODO: get element attribute
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidattributename
+  get value of element's attribute
 ]#
+proc getAttributeValue*(element: Element, name: string): string =
+  let resp = element.get(fmt"/attribute/{name}")
+  return resp{"value"}.getStr()
 
 #[
   TODO: is displayed element

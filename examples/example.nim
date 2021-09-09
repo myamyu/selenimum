@@ -85,6 +85,17 @@ proc main() =
     title = session.getTitle()
     debug(fmt"title: {title}")
 
+    elem = session.findElement(query="form input")
+    var val = elem.getAttributeValue("value")
+    debug(fmt"element value: {val}")
+    elem.clearValue()
+    elem = session.findElement(query="form button")
+    elem.click()
+    sleep(300)
+    debug(fmt"URL: {$url}")
+    title = session.getTitle()
+    debug(fmt"title: {title}")
+
     # クリック
     # elem = session.findElement(query="ニュース", strategy="link text")
     # elemText = elem.getText()
