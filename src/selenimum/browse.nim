@@ -3,21 +3,18 @@ import session
 
 #[
   navigate to url(by string)
-  https://w3c.github.io/webdriver/#dfn-navigate-to
 ]#
 proc navigateTo*(session: SeleniumSession, url: string) =
   discard session.post("/url", %*{"url": url})
 
 #[
   navigate to url(by Uri)
-  https://w3c.github.io/webdriver/#dfn-navigate-to
 ]#
 proc navigateTo*(session: SeleniumSession, url: Uri) =
   discard session.post("/url", %*{"url": $url})
 
 #[
   get current Url
-  https://w3c.github.io/webdriver/#dfn-get-current-url
 ]#
 proc getCurrentUrl*(session: SeleniumSession): Uri =
   let resp = session.get("/url")
@@ -25,14 +22,12 @@ proc getCurrentUrl*(session: SeleniumSession): Uri =
 
 #[
   back
-  https://w3c.github.io/webdriver/#dfn-back
 ]#
 proc back*(session: SeleniumSession) =
   discard session.post("/back", %*{})
 
 #[
   forward
-  https://w3c.github.io/webdriver/#dfn-forward
 ]#
 proc forward*(session: SeleniumSession) =
   discard session.post("/forward", %*{})
@@ -40,14 +35,12 @@ proc forward*(session: SeleniumSession) =
 
 #[
   refresh
-  https://w3c.github.io/webdriver/#dfn-refresh
 ]#
 proc refresh*(session: SeleniumSession) =
   discard session.post("/refresh", %*{})
 
 #[
   get title
-  https://w3c.github.io/webdriver/#dfn-get-title
 ]#
 proc getTitle*(session: SeleniumSession): string =
   let resp = session.get("/title")
@@ -55,7 +48,6 @@ proc getTitle*(session: SeleniumSession): string =
 
 #[
   get page source
-  https://w3c.github.io/webdriver/#dfn-get-page-source
 ]#
 proc getPageSource*(session: SeleniumSession): string =
   let resp = session.get("/source")

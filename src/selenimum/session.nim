@@ -21,7 +21,6 @@ let
 
 #[
   create new session.
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#session
 ]#
 proc newSession*(driver: SeleniumWebDriver, capabilities:JsonNode = defaultCapabilities): SeleniumSession =
   # check status
@@ -66,7 +65,6 @@ proc delete*(session: SeleniumSession, path: string) =
 
 #[
   get timeouts
-  https://w3c.github.io/webdriver/#dfn-get-timeouts
 ]#
 proc getTimeouts*(session: SeleniumSession): Timeouts =
   let resp = session.get("/timeouts")

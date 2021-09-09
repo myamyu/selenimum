@@ -52,7 +52,6 @@ proc isEmpty*(c: Cookie): bool =
 
 #[
   get all cookies
-  https://w3c.github.io/webdriver/#dfn-get-all-cookies
 ]#
 proc getAllCookies*(session: SeleniumSession): seq[Cookie] =
   let resp = session.get("/cookie")
@@ -62,7 +61,6 @@ proc getAllCookies*(session: SeleniumSession): seq[Cookie] =
 
 #[
   get named cookie
-  https://w3c.github.io/webdriver/#dfn-get-named-cookie
 ]#
 proc getNamedCookie*(session: SeleniumSession, name: string): Cookie =
   try:
@@ -75,7 +73,6 @@ proc getNamedCookie*(session: SeleniumSession, name: string): Cookie =
 
 #[
   set cookie
-  https://w3c.github.io/webdriver/#dfn-adding-a-cookie
 ]#
 proc setCookie*(session: SeleniumSession, cookie: Cookie) =
   discard session.post("/cookie", %*{
@@ -84,14 +81,12 @@ proc setCookie*(session: SeleniumSession, cookie: Cookie) =
 
 #[
   delete cookie
-  https://w3c.github.io/webdriver/#dfn-delete-cookie
 ]#
 proc deleteCookie*(session: SeleniumSession, name: string) =
   session.delete(fmt"/cookie/{name}")
 
 #[
   delete all cookies
-  https://w3c.github.io/webdriver/#dfn-delete-all-cookies
 ]#
 proc deleteAllCookies*(session: SeleniumSession) =
   session.delete("/cookie")

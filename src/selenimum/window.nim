@@ -28,7 +28,6 @@ import session, rect
 
 #[
   get window rect
-  https://w3c.github.io/webdriver/#dfn-get-window-rect
 ]#
 proc getWindowRect*(session: SeleniumSession): Rect =
   let resp = session.get("/window/rect")

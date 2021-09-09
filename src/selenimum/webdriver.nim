@@ -43,8 +43,7 @@ proc delete*(driver: SeleniumWebDriver, path: string) =
   resp.checkHttpResponse()
 
 #[
-  status
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#status
+  get selenium status
 ]#
 proc status*(driver: SeleniumWebDriver): SeleniumStatus =
   let resp = driver.get("/status")
