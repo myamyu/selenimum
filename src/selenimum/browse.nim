@@ -70,9 +70,10 @@ proc getPageSource*(session: SeleniumSession): string =
 ]#
 
 #[
-  TODO: https://w3c.github.io/webdriver/#dfn-take-screenshot
-]#
+  take screenshot of the current page.
 
-#[
-  TODO: https://w3c.github.io/webdriver/#dfn-print-page
+  return - The screenshot as a base64 encoded PNG.
 ]#
+proc takeScreenshot*(session: SeleniumSession): string =
+  let resp = session.get("/screenshot")
+  return resp{"value"}.getStr()

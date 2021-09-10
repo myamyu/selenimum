@@ -1,4 +1,4 @@
-import logging, strformat, uri, os
+import logging, strformat, uri, os, base64
 import selenimum
 
 const fmtStr = "$date $time - [$levelname] "
@@ -84,6 +84,11 @@ proc main() =
     debug(fmt"URL: {$url}")
     title = session.getTitle()
     debug(fmt"title: {title}")
+    var screenshot = session.takeScreenshot()
+    var b = decode(screenshot)
+    var f = open("./examples/screenshot.png", FileMode.fmWrite)
+    f.write(b)
+    f.close()
 
     elem = session.findElement(query="form input")
     var val = elem.getAttributeValue("value")
