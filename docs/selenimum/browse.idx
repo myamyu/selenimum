@@ -1,0 +1,10 @@
+navigateTo	selenimum/browse.html#navigateTo,SeleniumSession,string	browse: navigateTo(session: SeleniumSession; url: string)	
+navigateTo	selenimum/browse.html#navigateTo,SeleniumSession,Uri	browse: navigateTo(session: SeleniumSession; url: Uri)	
+getCurrentUrl	selenimum/browse.html#getCurrentUrl,SeleniumSession	browse: getCurrentUrl(session: SeleniumSession): Uri	
+back	selenimum/browse.html#back,SeleniumSession	browse: back(session: SeleniumSession)	
+forward	selenimum/browse.html#forward,SeleniumSession	browse: forward(session: SeleniumSession)	
+refresh	selenimum/browse.html#refresh,SeleniumSession	browse: refresh(session: SeleniumSession)	
+getTitle	selenimum/browse.html#getTitle,SeleniumSession	browse: getTitle(session: SeleniumSession): string	
+getPageSource	selenimum/browse.html#getPageSource,SeleniumSession	browse: getPageSource(session: SeleniumSession): string	
+takeScreenshot	selenimum/browse.html#takeScreenshot,SeleniumSession	browse: takeScreenshot(session: SeleniumSession): string	
+saveScreenshot	selenimum/browse.html#saveScreenshot,SeleniumSession,string	browse: saveScreenshot(session: SeleniumSession; filePath: string)	
