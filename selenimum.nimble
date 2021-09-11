@@ -14,7 +14,7 @@ requires "nim >= 1.4.8"
 # Tasks
 
 task docs, "Generate document":
-  exec "nimble doc src/selenimum.nim -o:htmldocs/index.html"
+  exec "nimble doc src/selenimum.nim -o:docs/index.html"
 
 task examples, "Run example codes":
   exec "nim c --outdir:examples/bin -r examples/example.nim"

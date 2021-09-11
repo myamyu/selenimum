@@ -25,40 +25,24 @@ docker-compose up --build
 
 [source,nim]
 ----
-import selenimum, uri
-import logging, strformat
-
-const fmtStr = "$date $time - [$levelname] "
-let logger = newConsoleLogger(fmtStr=fmtStr)
-addHandler(logger)
+import selenimum, strformat
 
 proc main() =
-  info("start the example.")
-
   let
     driver = newSeleniumWebDriver()
     session = driver.newSession()
-
-  info(fmt"session is [{session.id}]")
-
   defer:
-    info(fmt"delete session [{session.id}]")
     session.deleteSession()
-    info("end of example.")
 
   try:
-    info("Navigate to...")
+    # navigate to Yahoo!JAPAN
     session.navigateTo("https://www.yahoo.co.jp/")
-    let url = session.getCurrentUrl()
-    info(fmt"URL: {$url}")
     let title = session.getTitle()
-    info(fmt"title: {title}")
-    let winRect = session.getWindowRect()
-    info(fmt"window rect: {$winRect}")
-  except SeleniumWebDriverException as e:
-    error("Selenium ERROR!!", e.getStackTrace())
+    echo(&"page title:{title}")
+    session.saveScreenshot("yahoo-japan.png")
+    echo("screenshot saved.")
   except Exception as e:
-    error("ERROR!!", e.getStackTrace())
+    echo("ERROR!!", e.getStackTrace())
 
 main()
 ----
@@ -67,6 +51,8 @@ if you want to use firefox.
 
 [source,nim]
 ----
+import selenimum, json
+
 let
   capabilities = %*{
     "desiredCapabilities": {
