@@ -14,7 +14,7 @@ type
 #[
   create new SeleniumWebDriver
 ]#
-proc newSeleniumWebDriver*(baseUrl:string = "http://localhost:4444/wd/hub", timeout:int = 10000): SeleniumWebDriver =
+proc newSeleniumWebDriver*(baseUrl:string = "http://localhost:4444/wd/hub", timeout:int = 15000): SeleniumWebDriver =
   SeleniumWebDriver(baseUrl: baseUrl.parseUri, client: newHttpClient(timeout = timeout))
 
 # send GET request to selenium

@@ -1,128 +1,73 @@
-import logging, strformat, uri, os, base64
+import logging, strformat, uri, os
 import selenimum
 
 const fmtStr = "$date $time - [$levelname] "
-let logger = newConsoleLogger(fmtStr=fmtStr)
-addHandler(logger)
+addHandler(newConsoleLogger(fmtStr=fmtStr))
+addHandler(newRollingFileLogger(filename="examples/logs/example.log", fmtStr=fmtStr))
 
 proc main() =
   info("start the example.")
+  defer:
+    info("end of example.")
 
   let
     driver = newSeleniumWebDriver()
     session = driver.newSession()
 
-  info(fmt"session is [{session.id}]")
-
-  defer:
-    info(fmt"delete session [{session.id}]")
-    session.deleteSession()
-    info("end of example.")
+  info(fmt"sessionID [{session.id}]")
 
   try:
-    info("Navigate to...")
+    info("Navigate to Yahoo!JAPAN ...")
     session.navigateTo("https://www.yahoo.co.jp/")
-    info("Get URL...")
     var url = session.getCurrentUrl()
-    debug(fmt"URL: {$url}")
     var title = session.getTitle()
-    debug(fmt"title: {title}")
-    let winRect = session.getWindowRect()
-    debug(fmt"rect: {$winRect}")
-    var cookie = session.getNamedCookie("__gads")
-    if cookie.isEmpty:
-      debug(fmt"cookie is empty.")
-    else:
-      debug(fmt"cookie: {$cookie}")
-    session.back()
-    url = session.getCurrentUrl()
-    debug(fmt"URL: {$url}")
-    session.forward()
-    url = session.getCurrentUrl()
-    debug(fmt"URL: {$url}")
+    info(&"Page Title:[{title}] URL[{url}]")
 
-    # cookie操作
-    session.setCookie(Cookie(
-      name: "hoge",
-      value: "fuga",
-    ))
-    info("Cookie is created.")
-    cookie = session.getNamedCookie("hoge")
-    if cookie.isEmpty:
-      debug(fmt"cookie is empty.")
-    else:
-      debug(fmt"cookie: {$cookie}")
-    session.deleteCookie("hoge")
-    info("Cookie is deleted.")
-    cookie = session.getNamedCookie("hoge")
-    if cookie.isEmpty:
-      debug(fmt"cookie is empty.")
-    else:
-      debug(fmt"cookie: {$cookie}")
-    session.deleteAllCookies()
-    info("Cookie clear!")
-    var cookies = session.getAllCookies()
-    debug(fmt"cookies: {$cookies}")
-
-    # element
-    var elem = session.findElementByTagName("h1")
-    var elemText = elem.getText()
-    debug(fmt"h1 text: {elemText}")
-
-    var elems = session.findElements(query="#ToolList > ul > li a > p > span:first-child > span")
-    for e in elems:
-      elemText = e.getText()
-      debug(fmt"element text: {elemText}")
-    
-    # yahoo検索
-    elem = session.findElement(query="form input")
-    elem.setValue("どんたこす")
+    # search web by yahoo japan.
+    var elem = session.findElement(query="form input")
+    var searchWord = "ももいろクローバーZ"
+    elem.setValue(searchWord)
     elem = session.findElement(query="form button")
     elem.click()
-    sleep(300)
-    url = session.getCurrentUrl()
-    debug(fmt"URL: {$url}")
+    info(&"searching [{searchWord}] ...")
+    sleep(300) # wait for next page.
+
+    # search result
     title = session.getTitle()
-    debug(fmt"title: {title}")
-    var screenshot = session.takeScreenshot()
-    var b = decode(screenshot)
-    var f = open("./examples/screenshot.png", FileMode.fmWrite)
-    f.write(b)
-    f.close()
+    info(&"Page Title: {title}")
+    const outputPath = "examples/outputs"
+    session.saveScreenshot(&"{outputPath}/searchResults.png")
+    var links = session.findElements(query="a.sw-Card__titleInner")
+    var urls: seq[string] = @[]
+    for i, link in links:
+      let linkUrl = link.getAttributeValue("href")
+      let h3 = link.findElement(query="h3")
+      let linkTitle = h3.getText()
+      info(&"No.{i} {linkTitle} {linkUrl}")
+      urls.add(linkUrl)
 
-    elem = session.findElement(query="form input")
-    var val = elem.getAttributeValue("value")
-    debug(fmt"element value: {val}")
-    elem.clearValue()
-    elem = session.findElement(query="form button")
-    elem.click()
-    sleep(300)
-    debug(fmt"URL: {$url}")
-    title = session.getTitle()
-    debug(fmt"title: {title}")
+    # take screenshot of result pages
+    for i, url in urls:
+      info(&"Navigate to [{url}] ...")
+      session.navigateTo(url)
+      title = session.getTitle()
+      info(&"Page Title:[{title}]")
+      let pngFile = &"{outputPath}/result-{$i}.png"
+      session.saveScreenshot(pngFile)
+      info(&"save to [{pngFile}]")
+      sleep(100)
 
-    # クリック
-    # elem = session.findElement(query="ニュース", strategy="link text")
-    # elemText = elem.getText()
-    # debug(fmt"link text: {elemText}")
-    # elem.click()
-    # sleep(300)
-    # url = session.getCurrentUrl()
-    # debug(fmt"URL: {$url}")
-    # title = session.getTitle()
-    # debug(fmt"title: {title}")
-
-    # sourceはたくさん出るので封印
-    # let source = session.getPageSource()
-    # echo source
   except SeleniumNotFoundException as e:
-    error("Not Found Exception!!", e.msg)
-    echo e.getStackTrace()
+    error(&"Not Found Exception!! {e.msg}\n{e.getStackTrace()}")
   except SeleniumWebDriverException as e:
-    error("Selenium ERROR!!", e.msg)
-    echo e.getStackTrace()
+    error(&"Selenium ERROR!! {e.msg}\n{e.getStackTrace()}")
   except Exception as e:
-    error("ERROR!!", e.msg)
-    echo e.getStackTrace()
+    error(&"ERROR!! {e.msg}\n{e.getStackTrace()}")
+  finally:
+    info(fmt"delete session [{session.id}]")
+    session.deleteSession()
 
-main()
+try:
+  main()
+except Exception as e:
+  error(&"ERROR!! {e.msg}\n{e.getStackTrace()}")

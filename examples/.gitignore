@@ -1,3 +1,5 @@
-example
-example.exe
-screenshot.png
+bin/
+logs/*
+!logs/.gitkeep
+outputs/*
+!outputs/.gitkeep

@@ -1,4 +1,4 @@
-import json, uri
+import json, uri, base64
 import session
 
 #[
@@ -77,3 +77,14 @@ proc getPageSource*(session: SeleniumSession): string =
 proc takeScreenshot*(session: SeleniumSession): string =
   let resp = session.get("/screenshot")
   return resp{"value"}.getStr()
+
+#[
+  save screenshot to file.
+]#
+proc saveScreenshot*(session: SeleniumSession, filePath: string) =
+  let screenshot = session.takeScreenshot()
+  let b = decode(screenshot)
+  let f = open(filePath, FileMode.fmWrite)
+  defer:
+    f.close()
+  f.write(b)
