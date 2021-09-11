@@ -2,7 +2,7 @@
 
 version       = "0.1.0"
 author        = "myamyu"
-description   = "Selenium web driver"
+description   = "WebDriver for Selenium(selenium-hub)."
 license       = "MIT"
 srcDir        = "src"
 
