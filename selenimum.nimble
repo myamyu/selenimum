@@ -17,4 +17,4 @@ task docs, "Generate document":
   exec "nimble doc src/selenimum.nim -o:htmldocs/index.html"
 
 task examples, "Run example codes":
-  exec "nim c -r examples/example.nim"
+  exec "nim c --outdir:examples/bin -r examples/example.nim"

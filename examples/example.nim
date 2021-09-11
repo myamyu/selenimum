@@ -25,7 +25,7 @@ proc main() =
 
     # search web by yahoo japan.
     var elem = session.findElement(query="form input")
-    var searchWord = "ももいろクローバーZ"
+    var searchWord = "フィロソフィーのダンス"
     elem.setValue(searchWord)
     elem = session.findElement(query="form button")
     elem.click()
@@ -52,10 +52,10 @@ proc main() =
       session.navigateTo(url)
       title = session.getTitle()
       info(&"Page Title:[{title}]")
+      sleep(1500)
       let pngFile = &"{outputPath}/result-{$i}.png"
       session.saveScreenshot(pngFile)
       info(&"save to [{pngFile}]")
-      sleep(100)
 
   except SeleniumNotFoundException as e:
     error(&"Not Found Exception!! {e.msg}\n{e.getStackTrace()}")
