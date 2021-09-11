@@ -91,7 +91,14 @@ function main() {
     </select>
   </div>
   <ul class="simple simple-toc" id="toc-list">
-<li>
+<li><a class="reference" id="overview_toc" href="#overview">Overview</a></li>
+<ul class="simple"><li><a class="reference" id="overview-preparation_toc" href="#overview-preparation">Preparation</a></li>
+<li><a class="reference" id="overview-create-session_toc" href="#overview-create-session">Create session</a></li>
+<li><a class="reference" id="overview-navigate-to-web-site_toc" href="#overview-navigate-to-web-site">Navigate to web site</a></li>
+<li><a class="reference" id="overview-find-element_toc" href="#overview-find-element">Find element</a></li>
+<li><a class="reference" id="overview-click-element_toc" href="#overview-click-element">Click element</a></li>
+<li><a class="reference" id="overview-take-screenshot_toc" href="#overview-take-screenshot">Take screenshot</a></li>
+</ul><li>
   <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
   <ul class="simple simple-toc-section">
     
@@ -110,7 +117,50 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
-  <p class="module-desc"></p>
+  <p class="module-desc">This module is Webdriver for Selenium(Selenium-hub).
+<h1><a class="toc-backref" id="overview" href="#overview">Overview</a></h1>
+<h2><a class="toc-backref" id="overview-preparation" href="#overview-preparation">Preparation</a></h2><p>Start Selenium-hub before run program.</p>
+<p>If you want to use docker-compse, copy <a class="reference external" href="https://github.com/myamyu/selenimum/blob/main/docker-compose.yaml">this docker-compose.yaml</a> to your working directory and start docker-compose.</p>
+<pre class="listing"><span class="Identifier">docker</span><span class="Operator">-</span><span class="Identifier">compose</span> <span class="Identifier">up</span> <span class="Operator">--</span><span class="Identifier">build</span></pre><p>or</p>
+<pre class="listing"><span class="Identifier">docker</span><span class="Operator">-</span><span class="Identifier">compose</span> <span class="Identifier">start</span></pre>
+<h2><a class="toc-backref" id="overview-create-session" href="#overview-create-session">Create session</a></h2><p>Using Chrome. (default)</p>
+<pre class="listing"><span class="Keyword">import</span> <span class="Identifier">selenimum</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+  <span class="Keyword">let</span>
+    <span class="Identifier">driver</span> <span class="Operator">=</span> <span class="Identifier">newSeleniumWebDriver</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+    <span class="Identifier">session</span> <span class="Operator">=</span> <span class="Identifier">driver</span><span class="Operator">.</span><span class="Identifier">newSession</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+  <span class="Keyword">defer</span><span class="Punctuation">:</span>
+    <span class="Identifier">session</span><span class="Operator">.</span><span class="Identifier">deleteSession</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+  <span class="Comment"># ... control Selenium ...</span>
+
+<span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre><p>Using Firefox.</p>
+<p>Set capabilities(JsonNode) to newSession proc.</p>
+<pre class="listing"><span class="Keyword">import</span> <span class="Identifier">selenimum</span><span class="Punctuation">,</span> <span class="Identifier">json</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+  <span class="Keyword">let</span>
+    <span class="Identifier">driver</span> <span class="Operator">=</span> <span class="Identifier">newSeleniumWebDriver</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+    <span class="Identifier">capabilities</span> <span class="Operator">=</span> <span class="Operator">%*</span><span class="Punctuation">{</span>
+      <span class="StringLit">&quot;desiredCapabilities&quot;</span><span class="Punctuation">:</span> <span class="Punctuation">{</span>
+        <span class="StringLit">&quot;browserName&quot;</span><span class="Punctuation">:</span> <span class="StringLit">&quot;firefox&quot;</span>
+      <span class="Punctuation">}</span><span class="Punctuation">,</span>
+      <span class="StringLit">&quot;requiredCapabilities&quot;</span><span class="Punctuation">:</span> <span class="Punctuation">{</span><span class="Punctuation">}</span>
+    <span class="Punctuation">}</span>
+    <span class="Identifier">session</span> <span class="Operator">=</span> <span class="Identifier">driver</span><span class="Operator">.</span><span class="Identifier">newSession</span><span class="Punctuation">(</span><span class="Identifier">capabilities</span><span class="Operator">=</span><span class="Identifier">capabilities</span><span class="Punctuation">)</span>
+  <span class="Keyword">defer</span><span class="Punctuation">:</span>
+    <span class="Identifier">session</span><span class="Operator">.</span><span class="Identifier">deleteSession</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
+  <span class="Comment"># ... control Selenium ...</span>
+
+<span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre>
+<h2><a class="toc-backref" id="overview-navigate-to-web-site" href="#overview-navigate-to-web-site">Navigate to web site</a></h2><pre class="listing"><span class="Keyword">let</span> <span class="Identifier">url</span> <span class="Operator">=</span> <span class="StringLit">&quot;https://example.com/&quot;</span>
+<span class="Identifier">session</span><span class="Operator">.</span><span class="Identifier">navigateTo</span><span class="Punctuation">(</span><span class="Identifier">url</span><span class="Punctuation">)</span> <span class="Comment"># navigate to example.com</span></pre>
+<h2><a class="toc-backref" id="overview-find-element" href="#overview-find-element">Find element</a></h2><p>TODO: write docs.</p>
+
+<h2><a class="toc-backref" id="overview-click-element" href="#overview-click-element">Click element</a></h2><p>TODO: write docs.</p>
+
+<h2><a class="toc-backref" id="overview-take-screenshot" href="#overview-take-screenshot">Take screenshot</a></h2><p>TODO: write docs. </p>
+</p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
@@ -129,7 +179,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-11 11:38:32 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-11 17:04:24 UTC</small>
       </div>
     </div>
   </div>
