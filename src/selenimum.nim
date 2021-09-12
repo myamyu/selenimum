@@ -38,7 +38,7 @@
 ##
 ##  main()
 ## 
-## Using Firefox.
+## Use Firefox.
 ## 
 ## Set capabilities(JsonNode) to newSession proc.
 ## 
@@ -88,6 +88,9 @@
 ## 
 ## .. code-block:: Nim
 ##  session.saveScreenshot("./example.png")
+## 
+## Usage
+## ---------------
 ## 
 runnableExamples:
   import selenimum, os

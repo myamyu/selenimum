@@ -6,18 +6,23 @@ type
     session: SeleniumSession
     id*: string
 
-# call API GET for Element
 proc get*(element:Element, path: string): JsonNode =
+  ## Call selenium API GET method for Element.
+  ## 
+  ## If path = `"/text"` , call `GET /session/{sessionId}/element/{id}/text`.
   return element.session.get(fmt"/element/{element.id}{path}")
 
-# call API POST for Element
 proc post*(element:Element, path: string, body: JsonNode): JsonNode =
+  ## Call selenium API POST method for Element.
+  ## 
+  ## If path = `"/click"` , call `POST /session/{sessionId}/element/{id}/click`.
   return element.session.post(fmt"/element/{element.id}{path}", body)
 
-#[
-  find element
-]#
 proc findElement*(session: SeleniumSession, query: string, strategy: string = "css selector"): Element =
+  ## Find a element by `strategy` (default `"css selector"` ).
+  ## 
+  ## See https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelement for strategy.
+  ## 
   let body = %*{
     "using": strategy,
     "value": query,
@@ -28,40 +33,28 @@ proc findElement*(session: SeleniumSession, query: string, strategy: string = "c
     result.id = item.val.getStr()
     break
 
-#[
-  find element by css selector
-]#
 proc findElementBySelector*(session: SeleniumSession, query: string): Element =
+  ## Find a element by css selector.
   return session.findElement(query=query)
 
-#[
-  find element by id attribute
-]#
 proc findElementById*(session: SeleniumSession, id: string): Element =
+  ## Find a element by id attribute.
   return session.findElement(query=id, strategy="id")
 
-#[
-  find element by XPath
-]#
 proc findElementByXPath*(session: SeleniumSession, xpath: string): Element =
+  ## Find a element by XPath.
   return session.findElement(query=xpath, strategy="xpath")
 
-#[
-  find element by tag name
-]#
 proc findElementByTagName*(session: SeleniumSession, tagName: string): Element =
+  ## Find a element by tag name.
   return session.findElement(query=tagName, strategy="tag name")
 
-#[
-  find element by name attribute
-]#
 proc findElementByName*(session: SeleniumSession, name: string): Element =
+  ## Find a element by name attribute.
   return session.findElement(query=name, strategy="name")
 
-#[
-  find elements
-]#
 proc findElements*(session: SeleniumSession, query: string, strategy: string = "css selector"): seq[Element] =
+  ## Find some elements by `strategy` (default `"css selector"` ).
   let body = %*{
     "using": strategy,
     "value": query,
@@ -76,34 +69,24 @@ proc findElements*(session: SeleniumSession, query: string, strategy: string = "
       ))
       break
 
-#[
-  find elements by css selector
-]#
 proc findElementsBySelector*(session: SeleniumSession, query: string): seq[Element] =
+  ## Find some elements by css selector.
   return session.findElements(query=query)
 
-#[
-  find element by XPath
-]#
 proc findElementsByXPath*(session: SeleniumSession, xpath: string): seq[Element] =
+  ## Find some elements by XPath.
   return session.findElements(query=xpath, strategy="xpath")
 
-#[
-  find element by tag name
-]#
 proc findElementsByTagName*(session: SeleniumSession, tagName: string): seq[Element] =
+  ## Find some elements by tag name.
   return session.findElements(query=tagName, strategy="tag name")
 
-#[
-  find element by name attribute
-]#
 proc findElementsByName*(session: SeleniumSession, name: string): seq[Element] =
+  ## Find some elements by name attribute.
   return session.findElements(query=name, strategy="name")
 
-#[
-  find element from element
-]#
 proc findElement*(element: Element, query: string, strategy: string = "css selector"): Element =
+  ## Find a element from element by `strategy` (default `"css selector"` ).
   let body = %*{
     "using": strategy,
     "value": query,
@@ -114,40 +97,28 @@ proc findElement*(element: Element, query: string, strategy: string = "css selec
     result.id = item.val.getStr()
     break
 
-#[
-  find element by css selector
-]#
 proc findElementBySelector*(element: Element, query: string): Element =
+  ## Find a element from element by css selector.
   return element.findElement(query=query)
 
-#[
-  find element by id attribute
-]#
 proc findElementById*(element: Element, id: string): Element =
+  ## Find a element from element by id attribute.
   return element.findElement(query=id, strategy="id")
 
-#[
-  find element by XPath
-]#
 proc findElementByXPath*(element: Element, xpath: string): Element =
+  ## Find a element from element by XPath.
   return element.findElement(query=xpath, strategy="xpath")
 
-#[
-  find element by tag name
-]#
 proc findElementByTagName*(element: Element, tagName: string): Element =
+  ## Find a element from element by tag name.
   return element.findElement(query=tagName, strategy="tag name")
 
-#[
-  find element by name attribute
-]#
 proc findElementByName*(element: Element, name: string): Element =
+  ## Find a element from element by name attribute.
   return element.findElement(query=name, strategy="name")
 
-#[
-  find elements from element
-]#
 proc findElements*(element: Element, query: string, strategy: string = "css selector"): seq[Element] =
+  ## Find some elements from element by `strategy` (default `"css selector"` ).
   let body = %*{
     "using": strategy,
     "value": query,
@@ -162,103 +133,57 @@ proc findElements*(element: Element, query: string, strategy: string = "css sele
       ))
       break
 
-#[
-  find elements by css selector
-]#
 proc findElementsBySelector*(element: Element, query: string): seq[Element] =
+  ## Find some elements from element by css selector.
   return element.findElements(query=query)
 
-#[
-  find element by XPath
-]#
 proc findElementsByXPath*(element: Element, xpath: string): seq[Element] =
+  ## Find some elements from element by XPath.
   return element.findElements(query=xpath, strategy="xpath")
 
-#[
-  find element by tag name
-]#
 proc findElementsByTagName*(element: Element, tagName: string): seq[Element] =
+  ## Find some elements from element by tag name.
   return element.findElements(query=tagName, strategy="tag name")
 
-#[
-  find element by name attribute
-]#
 proc findElementsByName*(element: Element, name: string): seq[Element] =
+  ## Find some elements from element by name attribute.
   return element.findElements(query=name, strategy="name")
 
-#[
-  click element
-]#
 proc click*(element: Element) =
+  ## Click element.
   discard element.post("/click", %*{})
 
-#[
-  get element text
-]#
 proc getText*(element: Element): string =
+  ## Get element's innner text.
   let resp = element.get("/text")
   return resp{"value"}.getStr()
 
-#[
-  set input value
-]#
 proc setValue*(element: Element, val: string) =
+  ## Set value to `TEXTAREA` or `text INPUT` element.
   let body = %*{
     "text": val,
   }
   discard element.post("/value", body)
 
-#[
-  get element's tag name
-]#
 proc getTagName*(element: Element): string =
+  ## Get element's tag name.
   let resp = element.get("/name")
   return resp{"value"}.getStr()
 
-#[
-  clear element value(text INPUT, TEXTAREA)
-]#
 proc clearValue*(element: Element) =
+  ## Clear `TEXTAREA` or `text INPUT` element's value.
   discard element.post("/clear", %*{})
 
-#[
-  TODO: is selected element(OPTION, checkbox, radio)
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidselected
-]#
-
-#[
-  TODO: is enabled element
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidenabled
-]#
-
-#[
-  get value of element's attribute
-]#
 proc getAttributeValue*(element: Element, name: string): string =
+  ## Get value of element's attribute.
   let resp = element.get(fmt"/attribute/{name}")
   return resp{"value"}.getStr()
 
-#[
-  TODO: is displayed element
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementiddisplayed
-]#
-
-#[
-  TODO: get element location
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidlocation
-]#
-
-#[
-  TODO: get element location in view
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidlocation_in_view
-]#
-
-#[
-  TODO: get element size
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidsize
-]#
-
-#[
-  TODO: get element css property
-  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelementidcsspropertyname
-]#
+## TODO
+## -------
+## 
+## * isSelectedElement https://w3c.github.io/webdriver/#dfn-is-element-selected
+## * isEnabledElement https://w3c.github.io/webdriver/#dfn-is-element-enabled
+## * getElementRect https://w3c.github.io/webdriver/#dfn-get-element-rect
+## * getElementCssValue https://w3c.github.io/webdriver/#dfn-get-element-css-value
+## 

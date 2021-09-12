@@ -2,9 +2,9 @@ SeleniumSession	selenimum/session.html#SeleniumSession	session: SeleniumSession
 Timeouts	selenimum/session.html#Timeouts	session: Timeouts	
 defaultCapabilities	selenimum/session.html#defaultCapabilities	session: defaultCapabilities	
 newSession	selenimum/session.html#newSession,SeleniumWebDriver,JsonNode	session: newSession(driver: SeleniumWebDriver;\n           capabilities: JsonNode = defaultCapabilities): SeleniumSession	
-getSession	selenimum/session.html#getSession,SeleniumWebDriver,string	session: getSession(driver: SeleniumWebDriver; sessionId: string): SeleniumSession	
 deleteSession	selenimum/session.html#deleteSession,SeleniumSession	session: deleteSession(session: SeleniumSession)	
 get	selenimum/session.html#get,SeleniumSession,string	session: get(session: SeleniumSession; path: string): JsonNode	
 post	selenimum/session.html#post,SeleniumSession,string,JsonNode	session: post(session: SeleniumSession; path: string; body: JsonNode): JsonNode	
 delete	selenimum/session.html#delete,SeleniumSession,string	session: delete(session: SeleniumSession; path: string)	
 getTimeouts	selenimum/session.html#getTimeouts,SeleniumSession	session: getTimeouts(session: SeleniumSession): Timeouts	
+TODO	selenimum/session.html#todo	 TODO	

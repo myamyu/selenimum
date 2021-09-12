@@ -166,6 +166,9 @@ function main() {
     <span class="Identifier">SeleniumNotFoundException</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
+Check Selenium API response.<ul class="simple"><li>Raise <tt class="docutils literal"><span class="pre">SeleniumNotFoundException</span></tt> if HTTP 404 response without <tt class="docutils literal"><span class="pre">&quot;unknown command&quot;</span></tt>.</li>
+<li>Raise <tt class="docutils literal"><span class="pre">SeleniumServerException</span></tt> if other HTTP error(4xx, 5xx).</li>
+</ul>
 
 
 </dd>
@@ -179,7 +182,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-12 06:21:12 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-12 10:59:56 UTC</small>
       </div>
     </div>
   </div>

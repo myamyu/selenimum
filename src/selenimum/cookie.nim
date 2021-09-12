@@ -53,10 +53,8 @@ proc getAllCookies*(session: SeleniumSession): seq[Cookie] =
   for obj in resp{"value"}:
     result.add(obj.convToCookie())
 
-#[
-  get named cookie
-]#
 proc getNamedCookie*(session: SeleniumSession, name: string): Cookie =
+  ## Get current page's cookie.
   try:
     let resp = session.get(fmt"/cookie/{name}")
     return resp{"value"}.convToCookie()
@@ -65,22 +63,16 @@ proc getNamedCookie*(session: SeleniumSession, name: string): Cookie =
   except:
     raise
 
-#[
-  set cookie
-]#
 proc setCookie*(session: SeleniumSession, cookie: Cookie) =
+  ## Set current page's cookie.
   discard session.post("/cookie", %*{
     "cookie": %cookie,
   })
 
-#[
-  delete cookie
-]#
 proc deleteCookie*(session: SeleniumSession, name: string) =
+  ## Delete current page's cookie.
   session.delete(fmt"/cookie/{name}")
 
-#[
-  delete all cookies
-]#
 proc deleteAllCookies*(session: SeleniumSession) =
+  ## Delete current page's all cookies.
   session.delete("/cookie")

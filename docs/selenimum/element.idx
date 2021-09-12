@@ -29,3 +29,4 @@ setValue	selenimum/element.html#setValue,Element,string	element: setValue(elemen
 getTagName	selenimum/element.html#getTagName,Element	element: getTagName(element: Element): string	
 clearValue	selenimum/element.html#clearValue,Element	element: clearValue(element: Element)	
 getAttributeValue	selenimum/element.html#getAttributeValue,Element,string	element: getAttributeValue(element: Element; name: string): string	
+TODO	selenimum/element.html#todo	 TODO	

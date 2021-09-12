@@ -19,10 +19,27 @@ let
     "requiredCapabilities": {}
   }
 
-#[
-  create new session.
-]#
 proc newSession*(driver: SeleniumWebDriver, capabilities:JsonNode = defaultCapabilities): SeleniumSession =
+  ## Create new Selenium session.
+  ## 
+  ## Default capabilities is use chrome.
+  ## 
+  ## If want to use firefox:
+  ## 
+  ## .. code-block:: Nim
+  ##  let 
+  ##    capabilities = %*{
+  ##      "desiredCapabilities": {
+  ##        "browserName": "firefox"
+  ##      },
+  ##      "requiredCapabilities": {}
+  ##    }
+  ##    session = driver.newSession(capabilities=capabilities)
+  ## 
+  ## See https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#capabilities-json-object for capabilities.
+  ## 
+
+
   # check status
   let status = driver.status()
   if not status.ready:
@@ -35,38 +52,37 @@ proc newSession*(driver: SeleniumWebDriver, capabilities:JsonNode = defaultCapab
 
   return SeleniumSession(driver: driver, id: sessionId.getStr())
 
-#[
-  get exists session
-]#
-proc getSession*(driver: SeleniumWebDriver, sessionId: string): SeleniumSession =
-  return SeleniumSession(driver: driver, id: sessionId)
-
-#[
-  delete Selenium session
-]#
 proc deleteSession*(session: SeleniumSession) =
+  ## Delete Selenium session.
   let driver = session.driver
   driver.delete(fmt"/session/{session.id}")
 
-# send GET request to selenium with session
 proc get*(session: SeleniumSession, path: string): JsonNode =
+  ## Call selenium API GET method for Session.
+  ## 
+  ## If path = `"/url"` , call `GET /session/{sessionId}/url`.
+  ## 
   let driver = session.driver
   result = driver.get(fmt"/session/{session.id}{path}")
 
-# send POST request to selenium with session
 proc post*(session: SeleniumSession, path: string, body: JsonNode): JsonNode =
+  ## Call selenium API POST method for Session.
+  ## 
+  ## If path = `"/url"` , call `POST /session/{sessionId}/url`.
+  ## 
   let driver = session.driver
   result = driver.post(fmt"/session/{session.id}{path}", body)
 
-# send DELETE request to selenium with session
 proc delete*(session: SeleniumSession, path: string) =
+  ## Call selenium API DELETE method for Session.
+  ## 
+  ## If path = `"/cookie"` , call `DELETE /session/{sessionId}/cookie`.
+  ## 
   let driver = session.driver
   driver.delete(fmt"/session/{session.id}{path}")
 
-#[
-  get timeouts
-]#
 proc getTimeouts*(session: SeleniumSession): Timeouts =
+  ## Get timeouts value.
   let resp = session.get("/timeouts")
   let obj = resp{"value"}
   return Timeouts(
@@ -75,7 +91,8 @@ proc getTimeouts*(session: SeleniumSession): Timeouts =
     implicit: obj{"implicit"}.getInt(),
   )
 
-#[
-  TODO: set timeouts
-  https://w3c.github.io/webdriver/#dfn-set-timeouts
-]#
+## TODO
+## --------
+## 
+## * setTimeouts https://w3c.github.io/webdriver/#dfn-set-timeouts
+## 
