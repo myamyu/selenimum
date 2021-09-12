@@ -161,7 +161,7 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
-  <p class="module-desc"></p>
+  <p class="module-desc">Control the current page's cookie.</p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
@@ -195,14 +195,14 @@ function main() {
 <dt><pre><span class="Keyword">proc</span> <a href="#%25%2CCookie"><span class="Identifier">`%`</span></a><span class="Other">(</span><span class="Identifier">cookie</span><span class="Other">:</span> <a href="cookie.html#Cookie"><span class="Identifier">Cookie</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">JsonNode</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+convert <tt class="docutils literal"><span class="pre">Cookie</span></tt> to <tt class="docutils literal"><span class="pre">JsonNode</span></tt>
 
 </dd>
 <a id="isEmpty,Cookie"></a>
 <dt><pre><span class="Keyword">proc</span> <a href="#isEmpty%2CCookie"><span class="Identifier">isEmpty</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="cookie.html#Cookie"><span class="Identifier">Cookie</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Returns <tt class="docutils literal"><span class="pre">true</span></tt> if cookie is empty.
 
 </dd>
 <a id="getAllCookies,SeleniumSession"></a>
@@ -213,7 +213,7 @@ function main() {
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Get current page's all cookies.
 
 </dd>
 <a id="getNamedCookie,SeleniumSession,string"></a>
@@ -268,7 +268,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-11 17:04:24 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-12 06:21:12 UTC</small>
       </div>
     </div>
   </div>

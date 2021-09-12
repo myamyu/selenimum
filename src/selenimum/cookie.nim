@@ -1,3 +1,5 @@
+## Control the current page's cookie.
+
 import json, strformat
 import session, errors
 
@@ -12,10 +14,8 @@ type
     expiry*: int
     sameSite*: string
 
-#[
-  JsonNodeをCookie objectへ
-]#
 proc convToCookie(obj: JsonNode): Cookie =
+  ## convert `JsonNode` to `Cookie`
   return Cookie(
     name: obj{"name"}.getStr(),
     value: obj{"value"}.getStr(),
@@ -27,10 +27,8 @@ proc convToCookie(obj: JsonNode): Cookie =
     sameSite: obj{"sameSite"}.getStr(),
   )
 
-#[
-  cookie to json
-]#
 proc `%`*(cookie: Cookie): JsonNode =
+  ## convert `Cookie` to `JsonNode`
   result = %*{
     "name": cookie.name,
     "value": cookie.value,
@@ -44,16 +42,12 @@ proc `%`*(cookie: Cookie): JsonNode =
   if cookie.expiry > 0:
     result{"expiry"} = %cookie.expiry
 
-#[
-  is empty cookie?
-]#
 proc isEmpty*(c: Cookie): bool =
+  ## Returns `true` if cookie is empty.
   c.name == "" and c.value == ""
 
-#[
-  get all cookies
-]#
 proc getAllCookies*(session: SeleniumSession): seq[Cookie] =
+  ## Get current page's all cookies.
   let resp = session.get("/cookie")
   result = @[]
   for obj in resp{"value"}:

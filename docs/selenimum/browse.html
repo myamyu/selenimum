@@ -91,6 +91,7 @@ function main() {
     </select>
   </div>
   <ul class="simple simple-toc" id="toc-list">
+<li><a class="reference" id="todo_toc" href="#todo">TODO</a></li>
 <li>
   <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
   <ul class="simple simple-toc-section">
@@ -157,7 +158,13 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
-  <p class="module-desc"></p>
+  <p class="module-desc">control browser
+<h1><a class="toc-backref" id="todo" href="#todo">TODO</a></h1><ul class="simple"><li>dismissAlert <a class="reference external" href="https://w3c.github.io/webdriver/#dfn-dismiss-alert">https://w3c.github.io/webdriver/#dfn-dismiss-alert</a></li>
+<li>acceptAlert <a class="reference external" href="https://w3c.github.io/webdriver/#dfn-accept-alert">https://w3c.github.io/webdriver/#dfn-accept-alert</a></li>
+<li>getAlertText <a class="reference external" href="https://w3c.github.io/webdriver/#dfn-get-alert-text">https://w3c.github.io/webdriver/#dfn-get-alert-text</a></li>
+<li>sendAlertText <a class="reference external" href="https://w3c.github.io/webdriver/#dfn-send-alert-text">https://w3c.github.io/webdriver/#dfn-send-alert-text</a></li>
+</ul>
+</p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
@@ -174,7 +181,7 @@ function main() {
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Navigate to url by string.
 
 </dd>
 <a id="navigateTo,SeleniumSession,Uri"></a>
@@ -185,7 +192,7 @@ function main() {
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Navigate to url by Uri.
 
 </dd>
 <a id="getCurrentUrl,SeleniumSession"></a>
@@ -196,7 +203,7 @@ function main() {
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Get current Url.
 
 </dd>
 <a id="back,SeleniumSession"></a>
@@ -207,7 +214,7 @@ function main() {
                                        <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Go back to the previous page.
 
 </dd>
 <a id="forward,SeleniumSession"></a>
@@ -218,7 +225,7 @@ function main() {
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Go forward to the next page.
 
 </dd>
 <a id="refresh,SeleniumSession"></a>
@@ -229,7 +236,7 @@ function main() {
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Refresh current page.
 
 </dd>
 <a id="getTitle,SeleniumSession"></a>
@@ -240,7 +247,7 @@ function main() {
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Get current page title.
 
 </dd>
 <a id="getPageSource,SeleniumSession"></a>
@@ -251,7 +258,7 @@ function main() {
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Get current page's source.
 
 </dd>
 <a id="takeScreenshot,SeleniumSession"></a>
@@ -262,6 +269,8 @@ function main() {
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
+<p>Take screenshot of current page.</p>
+<p>Returns the screenshot as a base64 encoded PNG.</p>
 
 
 </dd>
@@ -273,7 +282,7 @@ function main() {
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
-
+Save screenshot of current page to <tt class="docutils literal"><span class="pre">filePath</span></tt>.
 
 </dd>
 
@@ -286,7 +295,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-11 17:04:24 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-12 06:21:12 UTC</small>
       </div>
     </div>
   </div>

@@ -65,23 +65,65 @@
 ## ---------------------
 ## 
 ## .. code-block:: Nim
-##  let url = "https://example.com/"
-##  session.navigateTo(url) # navigate to example.com
+##  session.navigateTo("https://example.com/") # navigate to example.com
 ## 
 ## Find element
 ## --------------
 ## 
-## TODO: write docs.
+## .. code-block:: Nim
+##  let h1 = session.findElement(query="h1")
+##  echo "h1 text:", h1.getText() # h1 text: Example Domain
 ## 
 ## Click element
 ## ---------------
 ## 
-## TODO: write docs.
+## .. code-block:: Nim
+##  let link = session.findElement(query="a")
+##  link.click() # move to https://www.iana.org/domains/reserved
+##  sleep(300)
+##  echo "page title: ", session.getTitle() # page title: IANA — IANA-managed Reserved Domains
 ## 
 ## Take screenshot
 ## ---------------
 ## 
-## TODO: write docs.
+## .. code-block:: Nim
+##  session.saveScreenshot("./example.png")
+## 
+runnableExamples:
+  import selenimum, os
+
+  proc main() =
+    let
+      driver = newSeleniumWebDriver()
+      session = driver.newSession()
+    defer:
+      session.deleteSession()
+    
+    try:
+      session.navigateTo("https://example.com/")
+      echo "page title: ", session.getTitle()
+      ## Output:
+      ##    page title: Example Domain
+      let h1 = session.findElement(query="h1")
+      echo "h1 text:", h1.getText()
+      ## Output:
+      ##    h1 text: Example Domain
+      session.saveScreenshot("./docs/example.png")
+      let link = session.findElement(query="a")
+      link.click()
+      sleep(300)
+      echo "page title: ", session.getTitle()
+      ## Output:
+      ##    page title: IANA — IANA-managed Reserved Domains
+    except Exception as e:
+      echo("ERROR!! ", e.msg)
+      echo(e.getStackTrace())
+
+  main()
+
+## screenshot
+## 
+## .. image:: ./example.png
 ## 
 
 import selenimum/[browse, cookie, element, errors, frame, rect, script, session, webdriver, window]
