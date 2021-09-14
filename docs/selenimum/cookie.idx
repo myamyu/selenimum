@@ -1,8 +1,0 @@
-Cookie	selenimum/cookie.html#Cookie	cookie: Cookie	
-`%`	selenimum/cookie.html#%,Cookie	cookie: `%`(cookie: Cookie): JsonNode	
-isEmpty	selenimum/cookie.html#isEmpty,Cookie	cookie: isEmpty(c: Cookie): bool	
-getAllCookies	selenimum/cookie.html#getAllCookies,SeleniumSession	cookie: getAllCookies(session: SeleniumSession): seq[Cookie]	
-getNamedCookie	selenimum/cookie.html#getNamedCookie,SeleniumSession,string	cookie: getNamedCookie(session: SeleniumSession; name: string): Cookie	
-setCookie	selenimum/cookie.html#setCookie,SeleniumSession,Cookie	cookie: setCookie(session: SeleniumSession; cookie: Cookie)	
-deleteCookie	selenimum/cookie.html#deleteCookie,SeleniumSession,string	cookie: deleteCookie(session: SeleniumSession; name: string)	
-deleteAllCookies	selenimum/cookie.html#deleteAllCookies,SeleniumSession	cookie: deleteAllCookies(session: SeleniumSession)	
