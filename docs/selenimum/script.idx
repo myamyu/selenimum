@@ -1,2 +1,0 @@
-executeScript	selenimum/script.html#executeScript,SeleniumSession,string	script: executeScript(session: SeleniumSession; script: string)	
-TODO	selenimum/script.html#todo	 TODO	
