@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+  nim-app:
+    container_name: nim-app
+    image: nimlang/nim:1.4.8
+    volumes:
+    - .:/working
+    working_dir: /working
+    tty: true
+    depends_on: 
+    - selenium-hub
+
   selenium-hub:
     image: selenium/hub:3.141.59-20210830
     container_name: selenium-hub
