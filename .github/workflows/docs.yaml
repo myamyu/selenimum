@@ -3,7 +3,7 @@ name: gen docs
 on:
   push:
     branches:
-    - feature/gen-docs-on-actions
+    - main
 
 jobs:
   gen_docs_deploy:
