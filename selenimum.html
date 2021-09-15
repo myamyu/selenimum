@@ -168,7 +168,7 @@ function main() {
 
 </span><span class="Keyword">proc</span><span class="Whitespace"> </span><span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace">
   </span><span class="Keyword">let</span><span class="Whitespace">
-    </span><span class="Identifier">driver</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace"> </span><span class="Identifier">newSeleniumWebDriver</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Whitespace">
+    </span><span class="Identifier">driver</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace"> </span><span class="Identifier">newSeleniumWebDriver</span><span class="Punctuation">(</span><span class="Identifier">baseUrl</span><span class="Operator">=</span><span class="StringLit">&quot;http://selenium-hub:4444/wd/hub&quot;</span><span class="Punctuation">)</span><span class="Whitespace">
     </span><span class="Identifier">session</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace"> </span><span class="Identifier">driver</span><span class="Operator">.</span><span class="Identifier">newSession</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Whitespace">
   </span><span class="Keyword">defer</span><span class="Punctuation">:</span><span class="Whitespace">
     </span><span class="Identifier">session</span><span class="Operator">.</span><span class="Identifier">deleteSession</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Whitespace">
@@ -182,7 +182,7 @@ function main() {
     </span><span class="Identifier">echo</span><span class="Whitespace"> </span><span class="StringLit">&quot;h1 text:&quot;</span><span class="Punctuation">,</span><span class="Whitespace"> </span><span class="Identifier">h1</span><span class="Operator">.</span><span class="Identifier">getText</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Whitespace">
     </span><span class="Comment">## Output:</span><span class="Whitespace">
     </span><span class="Comment">##    h1 text: Example Domain</span><span class="Whitespace">
-    </span><span class="Identifier">session</span><span class="Operator">.</span><span class="Identifier">saveScreenshot</span><span class="Punctuation">(</span><span class="StringLit">&quot;./docs/example.png&quot;</span><span class="Punctuation">)</span><span class="Whitespace">
+    </span><span class="Identifier">session</span><span class="Operator">.</span><span class="Identifier">saveScreenshot</span><span class="Punctuation">(</span><span class="StringLit">&quot;./htmldocs/example.png&quot;</span><span class="Punctuation">)</span><span class="Whitespace">
     </span><span class="Keyword">let</span><span class="Whitespace"> </span><span class="Identifier">link</span><span class="Whitespace"> </span><span class="Operator">=</span><span class="Whitespace"> </span><span class="Identifier">session</span><span class="Operator">.</span><span class="Identifier">findElement</span><span class="Punctuation">(</span><span class="Identifier">query</span><span class="Operator">=</span><span class="StringLit">&quot;a&quot;</span><span class="Punctuation">)</span><span class="Whitespace">
     </span><span class="Identifier">link</span><span class="Operator">.</span><span class="Identifier">click</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Whitespace">
     </span><span class="Identifier">sleep</span><span class="Punctuation">(</span><span class="DecNumber">300</span><span class="Punctuation">)</span><span class="Whitespace">
@@ -212,7 +212,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-14 16:14:09 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-15 17:31:37 UTC</small>
       </div>
     </div>
   </div>
