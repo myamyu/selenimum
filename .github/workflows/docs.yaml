@@ -1,0 +1,16 @@
+name: gen docs
+
+on:
+  push:
+    branches:
+    - feature/gen-docs-on-actions
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: generate docs with docker-compose
+      run: |
+        docker-compose up -d --remove-orphans
+        docker exec nim-app nimble docs

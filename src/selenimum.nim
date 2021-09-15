@@ -97,7 +97,7 @@ runnableExamples:
 
   proc main() =
     let
-      driver = newSeleniumWebDriver()
+      driver = newSeleniumWebDriver(baseUrl="http://selenium-hub:4444/wd/hub")
       session = driver.newSession()
     defer:
       session.deleteSession()
@@ -111,7 +111,7 @@ runnableExamples:
       echo "h1 text:", h1.getText()
       ## Output:
       ##    h1 text: Example Domain
-      session.saveScreenshot("./docs/example.png")
+      session.saveScreenshot("./htmldocs/example.png")
       let link = session.findElement(query="a")
       link.click()
       sleep(300)
