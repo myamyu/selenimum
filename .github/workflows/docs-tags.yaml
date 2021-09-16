@@ -17,6 +17,15 @@ jobs:
       run: |
         echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
 
+    - name: make output docs dir
+      shell: bash
+      id: make_dir
+      env:
+        TAG_NAME: ${{ steps.extract_tag.outputs.tag }}
+      run: |
+        mkdir -p htmldocs/release/${TAG_NAME}
+        echo "::set-output name=output_dir::htmldocs/release/${TAG_NAME}"
+
     - name: start docker-compose
       shell: bash
       run: |
@@ -25,9 +34,9 @@ jobs:
     - name: generate docs
       shell: bash
       env:
-        TAG_NAME: ${{ steps.extract_tag.outputs.tag }}
+        OUTPUT_DIR: ${{ steps.make_dir.outputs.output_dir }}
       run: |
-        docker exec nim-app nimble doc --index:on --project --out:htmldocs/release/${TAG_NAME} src/selenimum.nim
+        docker exec nim-app nimble doc --index:on --project --out:${OUTPUT_DIR} src/selenimum.nim
 
     - name: stop docker-compose
       shell: bash
@@ -37,9 +46,9 @@ jobs:
     - name: create index.html
       shell: bash
       env:
-        TAG_NAME: ${{ steps.extract_tag.outputs.tag }}
+        OUTPUT_DIR: ${{ steps.make_dir.outputs.output_dir }}
       run: |
-        cat << 'EOF' > htmldocs/release/${TAG_NAME}/index.html
+        cat << 'EOF' > ${OUTPUT_DIR}/index.html
         <!DOCTYPE html>
         <html lang="en">
         <head>

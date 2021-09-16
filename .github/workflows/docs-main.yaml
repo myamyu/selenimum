@@ -12,6 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: make output docs dir
+      shell: bash
+      id: make_dir
+      run: |
+        mkdir -p htmldocs/develop
+        echo "::set-output name=output_dir::htmldocs/develop"
+
     - name: start docker-compose
       shell: bash
       run: |
@@ -19,8 +26,10 @@ jobs:
     
     - name: generate docs
       shell: bash
+      env:
+        OUTPUT_DIR: ${{ steps.make_dir.outputs.output_dir }}
       run: |
-        docker exec nim-app nimble doc --index:on --project --out:htmldocs/develop/ src/selenimum.nim
+        docker exec nim-app nimble doc --index:on --project --out:${OUTPUT_DIR} src/selenimum.nim
 
     - name: stop docker-compose
       shell: bash
@@ -29,8 +38,10 @@ jobs:
 
     - name: create index.html
       shell: bash
+      env:
+        OUTPUT_DIR: ${{ steps.make_dir.outputs.output_dir }}
       run: |
-        cat << 'EOF' > htmldocs/develop/index.html
+        cat << 'EOF' > ${OUTPUT_DIR}/index.html
         <!DOCTYPE html>
         <html lang="en">
         <head>
