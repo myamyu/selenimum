@@ -1,5 +1,0 @@
-SeleniumWebDriverException	selenimum/errors.html#SeleniumWebDriverException	errors: SeleniumWebDriverException	
-SeleniumProtocolException	selenimum/errors.html#SeleniumProtocolException	errors: SeleniumProtocolException	
-SeleniumServerException	selenimum/errors.html#SeleniumServerException	errors: SeleniumServerException	
-SeleniumNotFoundException	selenimum/errors.html#SeleniumNotFoundException	errors: SeleniumNotFoundException	
-checkHttpResponse	selenimum/errors.html#checkHttpResponse,Response	errors: checkHttpResponse(resp: Response)	
