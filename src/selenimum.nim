@@ -111,7 +111,6 @@ runnableExamples:
       echo "h1 text:", h1.getText()
       ## Output:
       ##    h1 text: Example Domain
-      session.saveScreenshot("./htmldocs/example.png")
       let link = session.findElement(query="a")
       link.click()
       sleep(300)
@@ -123,11 +122,6 @@ runnableExamples:
       echo(e.getStackTrace())
 
   main()
-
-## screenshot
-## 
-## .. image:: ./example.png
-## 
 
 import selenimum/[browse, cookie, element, errors, frame, rect, script, session, webdriver, window]
 export browse, cookie, element, errors, frame, rect, script, session, webdriver, window
