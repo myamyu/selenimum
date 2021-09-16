@@ -1,8 +1,0 @@
-SeleniumWebDriver	selenimum/webdriver.html#SeleniumWebDriver	webdriver: SeleniumWebDriver	
-SeleniumStatus	selenimum/webdriver.html#SeleniumStatus	webdriver: SeleniumStatus	
-Params	selenimum/webdriver.html#params	 Params	
-newSeleniumWebDriver	selenimum/webdriver.html#newSeleniumWebDriver,string,int	webdriver: newSeleniumWebDriver(baseUrl: string = &quot;http://localhost:4444/wd/hub&quot;;\n                     timeout: int = 15000): SeleniumWebDriver	
-get	selenimum/webdriver.html#get,SeleniumWebDriver,string	webdriver: get(driver: SeleniumWebDriver; path: string): JsonNode	
-post	selenimum/webdriver.html#post,SeleniumWebDriver,string,JsonNode	webdriver: post(driver: SeleniumWebDriver; path: string; body: JsonNode): JsonNode	
-delete	selenimum/webdriver.html#delete,SeleniumWebDriver,string	webdriver: delete(driver: SeleniumWebDriver; path: string)	
-status	selenimum/webdriver.html#status,SeleniumWebDriver	webdriver: status(driver: SeleniumWebDriver): SeleniumStatus	
