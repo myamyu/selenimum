@@ -31,11 +31,6 @@ jobs:
       run: |
         docker exec nim-app nimble doc --index:on --project --out:${OUTPUT_DIR} src/selenimum.nim
 
-    - name: stop docker-compose
-      shell: bash
-      run: |
-        docker-compose stop
-
     - name: create index.html
       shell: bash
       env:
