@@ -10,9 +10,15 @@ jobs:
         shell: bash
         id: extract_branch
         run: |
+          echo "::set-output name=src::${GITHUB_REF#refs/*/}"
           echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+          echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
       - name: print branch name
         env:
+          SOURCE_NAME: ${{ steps.extract_branch.outputs.branch }}
           BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
+          TAG_NAME: ${{ steps.extract_branch.outputs.tag }}
         run: |
+          echo $SOURCE_NAME
           echo $BRANCH_NAME
+          echo $TAG_NAME
