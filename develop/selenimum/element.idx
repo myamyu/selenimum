@@ -1,0 +1,32 @@
+Element	selenimum/element.html#Element	element: Element	
+get	selenimum/element.html#get,Element,string	element: get(element: Element; path: string): JsonNode	
+post	selenimum/element.html#post,Element,string,JsonNode	element: post(element: Element; path: string; body: JsonNode): JsonNode	
+findElement	selenimum/element.html#findElement,SeleniumSession,string,string	element: findElement(session: SeleniumSession; query: string;\n            strategy: string = &quot;css selector&quot;): Element	
+findElementBySelector	selenimum/element.html#findElementBySelector,SeleniumSession,string	element: findElementBySelector(session: SeleniumSession; query: string): Element	
+findElementById	selenimum/element.html#findElementById,SeleniumSession,string	element: findElementById(session: SeleniumSession; id: string): Element	
+findElementByXPath	selenimum/element.html#findElementByXPath,SeleniumSession,string	element: findElementByXPath(session: SeleniumSession; xpath: string): Element	
+findElementByTagName	selenimum/element.html#findElementByTagName,SeleniumSession,string	element: findElementByTagName(session: SeleniumSession; tagName: string): Element	
+findElementByName	selenimum/element.html#findElementByName,SeleniumSession,string	element: findElementByName(session: SeleniumSession; name: string): Element	
+findElements	selenimum/element.html#findElements,SeleniumSession,string,string	element: findElements(session: SeleniumSession; query: string;\n             strategy: string = &quot;css selector&quot;): seq[Element]	
+findElementsBySelector	selenimum/element.html#findElementsBySelector,SeleniumSession,string	element: findElementsBySelector(session: SeleniumSession; query: string): seq[Element]	
+findElementsByXPath	selenimum/element.html#findElementsByXPath,SeleniumSession,string	element: findElementsByXPath(session: SeleniumSession; xpath: string): seq[Element]	
+findElementsByTagName	selenimum/element.html#findElementsByTagName,SeleniumSession,string	element: findElementsByTagName(session: SeleniumSession; tagName: string): seq[Element]	
+findElementsByName	selenimum/element.html#findElementsByName,SeleniumSession,string	element: findElementsByName(session: SeleniumSession; name: string): seq[Element]	
+findElement	selenimum/element.html#findElement,Element,string,string	element: findElement(element: Element; query: string; strategy: string = &quot;css selector&quot;): Element	
+findElementBySelector	selenimum/element.html#findElementBySelector,Element,string	element: findElementBySelector(element: Element; query: string): Element	
+findElementById	selenimum/element.html#findElementById,Element,string	element: findElementById(element: Element; id: string): Element	
+findElementByXPath	selenimum/element.html#findElementByXPath,Element,string	element: findElementByXPath(element: Element; xpath: string): Element	
+findElementByTagName	selenimum/element.html#findElementByTagName,Element,string	element: findElementByTagName(element: Element; tagName: string): Element	
+findElementByName	selenimum/element.html#findElementByName,Element,string	element: findElementByName(element: Element; name: string): Element	
+findElements	selenimum/element.html#findElements,Element,string,string	element: findElements(element: Element; query: string; strategy: string = &quot;css selector&quot;): seq[\n    Element]	
+findElementsBySelector	selenimum/element.html#findElementsBySelector,Element,string	element: findElementsBySelector(element: Element; query: string): seq[Element]	
+findElementsByXPath	selenimum/element.html#findElementsByXPath,Element,string	element: findElementsByXPath(element: Element; xpath: string): seq[Element]	
+findElementsByTagName	selenimum/element.html#findElementsByTagName,Element,string	element: findElementsByTagName(element: Element; tagName: string): seq[Element]	
+findElementsByName	selenimum/element.html#findElementsByName,Element,string	element: findElementsByName(element: Element; name: string): seq[Element]	
+click	selenimum/element.html#click,Element	element: click(element: Element)	
+getText	selenimum/element.html#getText,Element	element: getText(element: Element): string	
+setValue	selenimum/element.html#setValue,Element,string	element: setValue(element: Element; val: string)	
+getTagName	selenimum/element.html#getTagName,Element	element: getTagName(element: Element): string	
+clearValue	selenimum/element.html#clearValue,Element	element: clearValue(element: Element)	
+getAttributeValue	selenimum/element.html#getAttributeValue,Element,string	element: getAttributeValue(element: Element; name: string): string	
+TODO	selenimum/element.html#todo	 TODO	
