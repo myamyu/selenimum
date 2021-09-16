@@ -1,0 +1,18 @@
+name: check workflow
+
+on: push
+
+jobs:
+  check_workflow:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: get branch name
+        shell: bash
+        id: extract_branch
+        run: |
+          echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+      - name: print branch name
+        env:
+          BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
+        run: |
+          echo $BRANCH_NAME
