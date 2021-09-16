@@ -35,7 +35,7 @@ jobs:
       env:
         OUTPUT_DIR: ${{ steps.make_dir.outputs.output_dir }}
       run: |
-        cat << 'EOF' > ${OUTPUT_DIR}/index.html
+        cat << EOF > ${OUTPUT_DIR}/index.html
         <!DOCTYPE html>
         <html lang="en">
         <head>

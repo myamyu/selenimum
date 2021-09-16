@@ -44,7 +44,7 @@ jobs:
         OUTPUT_DIR: ${{ steps.make_dir.outputs.output_dir }}
         TAG_NAME: ${{ steps.extract_tag.outputs.tag }}
       run: |
-        cat << 'EOF' > ${OUTPUT_DIR}/index.html
+        cat << EOF > ${OUTPUT_DIR}/index.html
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -55,7 +55,7 @@ jobs:
         </body>
         </html>
         EOF
-        cat << 'EOF' > htmldocs/index.html
+        cat << EOF > htmldocs/index.html
         <!DOCTYPE html>
         <html lang="en">
         <head>
