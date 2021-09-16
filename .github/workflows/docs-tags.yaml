@@ -17,13 +17,22 @@ jobs:
       run: |
         echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
 
-    - name: generate docs with docker-compose
+    - name: start docker-compose
+      shell: bash
+      run: |
+        docker-compose up -d --remove-orphans
+    
+    - name: generate docs
       shell: bash
       env:
         TAG_NAME: ${{ steps.extract_tag.outputs.tag }}
       run: |
-        docker-compose up -d --remove-orphans
         docker exec nim-app nimble doc --index:on --project --out:htmldocs/release/${TAG_NAME} src/selenimum.nim
+
+    - name: stop docker-compose
+      shell: bash
+      run: |
+        docker-compose stop
 
     - name: create index.html
       shell: bash
