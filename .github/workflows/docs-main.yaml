@@ -1,0 +1,42 @@
+name: gen docs for main
+
+on:
+  push:
+    branches:
+    - main
+    - feature/*
+
+jobs:
+  gen_docs_deploy:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: generate docs with docker-compose
+      shell: bash
+      run: |
+        docker-compose up -d --remove-orphans
+        docker exec nim-app nimble doc --index:on --project --out:htmldocs/develop/ src/selenimum.nim
+
+    - name: create index.html
+      shell: bash
+      run: |
+        cat << 'EOF' > htmldocs/develop/index.html
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta http-equiv="refresh" content="0; url=./selenimum.html">
+        </head>
+        <body>
+          redirect to <a href="./selenimum.html">selenimum.html</a>  
+        </body>
+        </html>
+        EOF
+
+    - name: deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./htmldocs
+        keep_files: true
