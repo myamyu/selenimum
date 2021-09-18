@@ -9,8 +9,37 @@
 ## Start Selenium-hub before run program.
 ## 
 ## If you want to use docker-compse,
-## copy `this docker-compose.yaml <https://github.com/myamyu/selenimum/blob/main/docker-compose.yaml>`_ 
-## to your working directory and start docker-compose.
+## save docker-compose.yaml to your working directory.
+## 
+## .. code-block::yaml
+##  version: '3'
+## 
+##  services:
+##    selenium-hub:
+##      image: selenium/hub:3.141.59-20210830
+##      container_name: selenium-hub
+##      ports:
+##      - 4444:4444
+##      environment:
+##      - GRID_MAX_SESSION=10
+## 
+##    firefox: &node
+##      image: selenium/node-firefox:3.141.59-20210830
+##      container_name: selenium-firefox
+##      shm_size: 2gb
+##      depends_on:
+##      - selenium-hub
+##      environment:
+##      - HUB_HOST=selenium-hub
+##      - HUB_PORT=4444
+##      - NODE_MAX_SESSION=5
+## 
+##    chrome:
+##      <<: *node
+##      image: selenium/node-chrome:3.141.59-20210830
+##      container_name: selenium-chrome
+## 
+## And start docker-compose.
 ## 
 ## .. code-block::
 ##  docker-compose up --build

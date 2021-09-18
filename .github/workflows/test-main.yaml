@@ -1,0 +1,22 @@
+name: run tests for pull request
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: start docker-compose
+      shell: bash
+      run: |
+        docker-compose up -d --remove-orphans
+    
+    - name: test
+      shell: bash
+      run: |
+        docker exec nim-app nimble test

@@ -13,12 +13,42 @@ WebDriver for Selenium(selenium-hub) by Nim.
 
 === launch selenium hub
 
-copy link:./docker-compose.yaml[docker-compose.yaml] to your woriking directory. +
+save docker-compose.yaml to your woriking directory. +
 and up by docker-compose.
+
+[source,yaml]
+----
+version: '3'
+
+services:
+  selenium-hub:
+    image: selenium/hub:3.141.59-20210830
+    container_name: selenium-hub
+    ports:
+    - 4444:4444
+    environment:
+    - GRID_MAX_SESSION=10
+
+  firefox: &node
+    image: selenium/node-firefox:3.141.59-20210830
+    container_name: selenium-firefox
+    shm_size: 2gb
+    depends_on:
+    - selenium-hub
+    environment:
+    - HUB_HOST=selenium-hub
+    - HUB_PORT=4444
+    - NODE_MAX_SESSION=5
+
+  chrome:
+    <<: *node
+    image: selenium/node-chrome:3.141.59-20210830
+    container_name: selenium-chrome
+----
 
 [source,sh]
 ----
-docker-compose up --build
+docker-compose up -d --remove-orphans
 ----
 
 === control selenium example
