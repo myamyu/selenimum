@@ -33,4 +33,16 @@ suite "test browse":
   test "get page title":
     session.navigateTo(fmt"{testSiteOrigin}/")
     let title = session.getTitle()
-    check(title == "Test Page Inde")
+    check(title == "Test Page Index")
+
+  test "back and forward":
+    session.navigateTo(fmt"{testSiteOrigin}/")
+    let url1 = session.getCurrentUrl()
+    session.navigateTo(fmt"{testSiteOrigin}/index2.html")
+    let url2 = session.getCurrentUrl()
+    checkPoint("back")
+    session.back()
+    check($session.getCurrentUrl() == $url1)
+    checkPoint("forward")
+    session.forward()
+    check($session.getCurrentUrl() == $url2)
