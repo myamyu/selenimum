@@ -1,4 +1,4 @@
-import unittest, uri, strformat
+import unittest, uri, strformat, strutils, os
 import selenimum
 
 suite "test browse":
@@ -33,7 +33,7 @@ suite "test browse":
   test "get page title":
     session.navigateTo(fmt"{testSiteOrigin}/")
     let title = session.getTitle()
-    check(title == "Test Page Inde")
+    check(title == "Test Page Index")
 
   test "back and forward":
     session.navigateTo(fmt"{testSiteOrigin}/")
@@ -46,3 +46,21 @@ suite "test browse":
     checkPoint("forward")
     session.forward()
     check($session.getCurrentUrl() == $url2)
+
+  test "refresh":
+    session.navigateTo(fmt"{testSiteOrigin}/")
+    session.refresh()
+    check($session.getCurrentUrl() == fmt"{testSiteOrigin}/")
+
+  test "get page source":
+    session.navigateTo(fmt"{testSiteOrigin}/")
+    let source = session.getPageSource()
+    check(source.find("this is comment") >= 0)
+
+  test "screenshot":
+    session.navigateTo(fmt"{testSiteOrigin}/")
+    session.saveScreenshot("./testpage.png")
+    checkpoint("check file expsts")
+    check(fileExists("./testpage.png"))
+    checkpoint("check file size")
+    check(getFileSize("./testpage.png") > 0)
