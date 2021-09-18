@@ -1,4 +1,4 @@
-name: run tests for pull request
+name: Pull request jobs
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
     - synchronize
 
 jobs:
-  run_tests:
+  prepare:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
@@ -15,7 +15,14 @@ jobs:
       shell: bash
       run: |
         docker-compose up -d --remove-orphans
-    
+
+  run_tests:
+    needs:
+    - prepare
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+
     - name: test
       shell: bash
       run: |
