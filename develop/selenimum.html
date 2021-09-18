@@ -121,7 +121,33 @@ function main() {
   <p class="module-desc">This module is Webdriver for Selenium(Selenium-hub).
 <h1><a class="toc-backref" id="overview" href="#overview">Overview</a></h1>
 <h2><a class="toc-backref" id="overview-preparation" href="#overview-preparation">Preparation</a></h2><p>Start Selenium-hub before run program.</p>
-<p>If you want to use docker-compse, copy <a class="reference external" href="https://github.com/myamyu/selenimum/blob/main/docker-compose.yaml">this docker-compose.yaml</a> to your working directory and start docker-compose.</p>
+<p>If you want to use docker-compse, save docker-compose.yaml to your working directory.</p>
+<pre class="listing"><span class="StringLit">version</span><span class="Punctuation">:</span> <span class="StringLit">'3'</span>
+
+<span class="StringLit">services</span><span class="Punctuation">:</span>
+  <span class="StringLit">selenium-hub</span><span class="Punctuation">:</span>
+    <span class="StringLit">image</span><span class="Punctuation">:</span> <span class="StringLit">selenium/hub:3.141.59-20210830</span>
+    <span class="StringLit">container_name</span><span class="Punctuation">:</span> <span class="StringLit">selenium-hub</span>
+    <span class="StringLit">ports</span><span class="Punctuation">:</span>
+    <span class="Punctuation">-</span> <span class="StringLit">4444:4444</span>
+    <span class="StringLit">environment</span><span class="Punctuation">:</span>
+    <span class="Punctuation">-</span> <span class="StringLit">GRID_MAX_SESSION=10</span>
+  
+  <span class="StringLit">firefox</span><span class="Punctuation">:</span> <span class="Label">&amp;node</span>
+    <span class="StringLit">image</span><span class="Punctuation">:</span> <span class="StringLit">selenium/node-firefox:3.141.59-20210830</span>
+    <span class="StringLit">container_name</span><span class="Punctuation">:</span> <span class="StringLit">selenium-firefox</span>
+    <span class="StringLit">shm_size</span><span class="Punctuation">:</span> <span class="StringLit">2gb</span>
+    <span class="StringLit">depends_on</span><span class="Punctuation">:</span>
+    <span class="Punctuation">-</span> <span class="StringLit">selenium-hub</span>
+    <span class="StringLit">environment</span><span class="Punctuation">:</span>
+    <span class="Punctuation">-</span> <span class="StringLit">HUB_HOST=selenium-hub</span>
+    <span class="Punctuation">-</span> <span class="StringLit">HUB_PORT=4444</span>
+    <span class="Punctuation">-</span> <span class="StringLit">NODE_MAX_SESSION=5</span>
+  
+  <span class="StringLit">chrome</span><span class="Punctuation">:</span>
+    <span class="StringLit">&lt;&lt;</span><span class="Punctuation">:</span> <span class="Reference">*node</span>
+    <span class="StringLit">image</span><span class="Punctuation">:</span> <span class="StringLit">selenium/node-chrome:3.141.59-20210830</span>
+    <span class="StringLit">container_name</span><span class="Punctuation">:</span> <span class="StringLit">selenium-chrome</span></pre><p>And start docker-compose.</p>
 <pre class="listing"><span class="Identifier">docker</span><span class="Operator">-</span><span class="Identifier">compose</span> <span class="Identifier">up</span> <span class="Operator">--</span><span class="Identifier">build</span></pre><p>or</p>
 <pre class="listing"><span class="Identifier">docker</span><span class="Operator">-</span><span class="Identifier">compose</span> <span class="Identifier">start</span></pre>
 <h2><a class="toc-backref" id="overview-create-session" href="#overview-create-session">Create session</a></h2><p>Using Chrome. (default)</p>
@@ -211,7 +237,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-16 17:15:46 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-09-18 13:53:49 UTC</small>
       </div>
     </div>
   </div>
