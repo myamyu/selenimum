@@ -41,10 +41,10 @@ jobs:
         URL: ${{ github.event.pull_request.comments_url }}
       run: |
         echo "" >> ./pr-comment.md
-        echo "```" >> ./pr-comment.md
+        echo '```' >> ./pr-comment.md
         cat ./test-report.txt >>  ./pr-comment.md
         echo "" >>  ./pr-comment.md
-        echo "```" >> ./pr-comment.md
+        echo '```' >> ./pr-comment.md
         echo "" >> ./pr-comment.md
 
         echo "-------"
@@ -52,7 +52,7 @@ jobs:
         echo "-------"
 
         sed -i -z 's/\n/\\n/g' ./pr-comment.md
-        curl -X -i POST \
+        curl -i -X POST \
           -H "Authorization: token ${GITHUB_TOKEN}" \
           -d "{\"body\": \"$(cat ./pr-comment.md)\"}" \
           ${URL}
