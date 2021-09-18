@@ -1,0 +1,52 @@
+name: gen docs for main
+
+on:
+  pull_request:
+    types:
+    - synchronize
+
+jobs:
+  gen_docs_deploy:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: start docker-compose
+      shell: bash
+      run: |
+        docker-compose up -d --remove-orphans
+    
+    - name: test
+      shell: bash
+      run: |
+        docker exec nim-app nimble test | tee ./test-report.txt
+
+    - name: comment OK
+      if: ${{ success() }}
+      shell: bash
+      run: |
+        echo "## :wchite_check_mark: Tests passed" > ./pr-comment.md
+
+    - name: comment NG
+      if: ${{ failure() }}
+      shell: bash
+      run: |
+        echo "## :sob: TEST FAILED" > ./pr-comment.md
+
+    - name: post comment
+      if: ${{ always() }}
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        URL: ${{ github.event.pull_request.comments_url }}
+      run: |
+        echo "" >> ./pr-comment.md
+        echo "```" >> ./pr-comment.md
+        echo cat ./test-report.txt >>  ./pr-comment.md
+        echo "```" >> ./pr-comment.md
+        echo "" >> ./pr-comment.md
+        sed -i -z 's/\n/\\n/g' ./pr-comment.md
+        curl -X POST \
+          -H "Authorization: token ${GITHUB_TOKEN}" \
+          -d "{\"body\": \"$(cat ./pr-comment.md)\"}" \
+          ${URL}
