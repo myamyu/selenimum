@@ -19,6 +19,7 @@ jobs:
   run_tests:
     needs:
     - prepare
+
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
