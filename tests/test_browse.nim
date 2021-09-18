@@ -33,7 +33,7 @@ suite "test browse":
   test "get page title":
     session.navigateTo(fmt"{testSiteOrigin}/")
     let title = session.getTitle()
-    check(title == "Test Page Index")
+    check(title == "Test Page Inde")
 
   test "back and forward":
     session.navigateTo(fmt"{testSiteOrigin}/")
