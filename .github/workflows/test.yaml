@@ -1,4 +1,4 @@
-name: gen docs for main
+name: run tests
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
     - synchronize
 
 jobs:
-  gen_docs_deploy:
+  run_tests:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
       if: ${{ success() }}
       shell: bash
       run: |
-        echo "## :wchite_check_mark: Tests passed" > ./pr-comment.md
+        echo "## :white_check_mark: Tests passed" > ./pr-comment.md
 
     - name: comment NG
       if: ${{ failure() }}
@@ -42,11 +42,12 @@ jobs:
       run: |
         echo "" >> ./pr-comment.md
         echo "```" >> ./pr-comment.md
-        echo cat ./test-report.txt >>  ./pr-comment.md
+        cat ./test-report.txt >>  ./pr-comment.md
+        echo ""
         echo "```" >> ./pr-comment.md
         echo "" >> ./pr-comment.md
         sed -i -z 's/\n/\\n/g' ./pr-comment.md
-        curl -X POST \
+        curl -X -i POST \
           -H "Authorization: token ${GITHUB_TOKEN}" \
           -d "{\"body\": \"$(cat ./pr-comment.md)\"}" \
           ${URL}
