@@ -43,9 +43,14 @@ jobs:
         echo "" >> ./pr-comment.md
         echo "```" >> ./pr-comment.md
         cat ./test-report.txt >>  ./pr-comment.md
-        echo ""
+        echo "" >>  ./pr-comment.md
         echo "```" >> ./pr-comment.md
         echo "" >> ./pr-comment.md
+
+        echo "-------"
+        cat ./pr-comment.md
+        echo "-------"
+
         sed -i -z 's/\n/\\n/g' ./pr-comment.md
         curl -X -i POST \
           -H "Authorization: token ${GITHUB_TOKEN}" \
