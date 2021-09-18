@@ -14,7 +14,7 @@ jobs:
     - name: start docker-compose
       shell: bash
       run: |
-        docker-compose build
+        docker-compose pull
 
   run_tests:
     needs:
