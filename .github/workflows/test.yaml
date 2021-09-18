@@ -43,9 +43,7 @@ jobs:
         echo "" >> ./pr-comment.md
         echo '```' >> ./pr-comment.md
         cat ./test-report.txt >>  ./pr-comment.md
-        echo "" >>  ./pr-comment.md
         echo '```' >> ./pr-comment.md
-        echo "" >> ./pr-comment.md
 
         echo "-------"
         cat ./pr-comment.md
