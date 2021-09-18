@@ -25,6 +25,7 @@ services:
     shm_size: 2gb
     depends_on:
     - selenium-hub
+    - test-site
     environment:
     - HUB_HOST=selenium-hub
     - HUB_PORT=4444
@@ -34,3 +35,11 @@ services:
     <<: *node
     image: selenium/node-chrome:3.141.59-20210830
     container_name: selenium-chrome
+
+  test-site:
+    container_name: test-site
+    image: nginx:1.21.3
+    volumes:
+    - ./tests/test-pages:/usr/share/nginx/html
+    ports:
+    - 8080:80
