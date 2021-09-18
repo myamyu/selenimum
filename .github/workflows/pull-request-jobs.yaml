@@ -14,7 +14,7 @@ jobs:
     - name: start docker-compose
       shell: bash
       run: |
-        docker-compose up -d --remove-orphans
+        docker-compose build
 
   run_tests:
     needs:
@@ -23,6 +23,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
+
+    - name: start docker-compose
+      shell: bash
+      run: |
+        docker-compose up -d --remove-orphans
 
     - name: test
       shell: bash
