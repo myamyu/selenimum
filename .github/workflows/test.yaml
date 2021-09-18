@@ -50,6 +50,8 @@ jobs:
         echo "-------"
 
         sed -i -z 's/\n/\\n/g' ./pr-comment.md
+        sed -i -z 's/"/\\"/g' ./pr-comment.md
+
         curl -i -X POST \
           -H "Authorization: token ${GITHUB_TOKEN}" \
           -d "{\"body\": \"$(cat ./pr-comment.md)\"}" \
