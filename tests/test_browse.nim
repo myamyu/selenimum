@@ -1,12 +1,8 @@
 import unittest, uri, strformat, strutils, os
-import selenimum
+import ./webdriver, selenimum
 
 suite "test browse":
-  const
-    testSiteOrigin = "http://test-site"
-  let
-    driver = newSeleniumWebDriver(baseUrl="http://selenium-hub:4444/wd/hub")
-  
+  let driver = newWebDriver()
   var session: SeleniumSession
 
   setup:
@@ -64,3 +60,22 @@ suite "test browse":
     check(fileExists("./testpage.png"))
     checkpoint("check file size")
     check(getFileSize("./testpage.png") > 0)
+
+suite "test browse error case":
+  let driver = newWebDriver()
+  var session: SeleniumSession
+
+  setup:
+    session = driver.newSession()
+  
+  teardown:
+    session.deleteSession()
+
+  test "navigate to url":
+    checkpoint("navigateTo by string")
+    expect(SeleniumServerException):
+      session.navigateTo(fmt"{testSiteOrigin}1/")
+
+    checkpoint("navigateTo by Uri")
+    expect(SeleniumServerException):
+      session.navigateTo(parseUri(fmt"{testSiteOrigin}1/"))
