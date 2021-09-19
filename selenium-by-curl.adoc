@@ -4,7 +4,7 @@
 
 NOTE: 参考 +
 https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol +
-https://w3c.github.io/webdriver/#dfn-back
+https://w3c.github.io/webdriver/
 
 == webdriver
 
