@@ -1,9 +1,6 @@
 name: run tests for pull request
 
-on:
-  pull_request:
-    types:
-    - synchronize
+on: pull_request
 
 jobs:
   run_tests:
