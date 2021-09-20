@@ -9,7 +9,6 @@ Selenimum is inspired by https://github.com/dom96/webdriver[dom96/webdriver].
 
 WebDriver for Selenium(selenium-hub) by Nim.
 
-
 == Usage
 
 === launch selenium hub
