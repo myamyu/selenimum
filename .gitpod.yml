@@ -8,8 +8,8 @@ ports:
 
 # List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-- init: echo 'init script'
-  command: echo 'start script'
+- name: start up docker-compose
+  command: docker-compose up -d --remove-orphans
 
 vscode:
   extensions:
