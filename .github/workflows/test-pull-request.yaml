@@ -1,6 +1,11 @@
 name: run tests for pull request
 
-on: pull_request
+on:
+  pull_request:
+    paths:
+    - "src/**/*.nim"
+    - "tests/*.nim"
+    - "tests/test-pages/**"
 
 jobs:
   run_tests:
