@@ -92,3 +92,10 @@ let
   }
   session = driver.newSession(capabilities=capabilities)
 ----
+
+== Docs
+
+* Latest release version +
+https://myamyu.github.io/selenimum/
+* Development version +
+https://myamyu.github.io/selenimum/develop/
