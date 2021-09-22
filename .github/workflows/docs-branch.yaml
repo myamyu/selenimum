@@ -1,9 +1,10 @@
-name: gen docs for release
+name: gen docs for feature branch
 
 on:
   push:
-    tags:
-    - "v*"
+    branches:
+    - "feature/**"
+    - "bugfix/**"
 
 jobs:
   gen_docs_deploy:
@@ -11,20 +12,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: get tag name
-      shell: bash
-      id: extract_tag
-      run: |
-        echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
-
     - name: make output docs dir
       shell: bash
       id: make_dir
-      env:
-        TAG_NAME: ${{ steps.extract_tag.outputs.tag }}
       run: |
-        mkdir -p htmldocs/release/${TAG_NAME}
-        echo "::set-output name=output_dir::htmldocs/release/${TAG_NAME}"
+        mkdir -p htmldocs/feature
+        echo "::set-output name=output_dir::htmldocs/feature"
 
     - name: start docker-compose
       shell: bash
@@ -39,13 +32,13 @@ jobs:
         docker exec nim-app nimble doc --index:on --project --out:${OUTPUT_DIR} \
           '--git.url:https://github.com/${{ github.repository }}' \
           '--git.commit:${{ github.sha }}' \
+          "--git.devel:${GITHUB_REF#refs/heads/}" \
           src/selenimum.nim
 
     - name: create index.html
       shell: bash
       env:
         OUTPUT_DIR: ${{ steps.make_dir.outputs.output_dir }}
-        TAG_NAME: ${{ steps.extract_tag.outputs.tag }}
       run: |
         cat << EOF > ${OUTPUT_DIR}/index.html
         <!DOCTYPE html>
@@ -55,17 +48,6 @@ jobs:
         </head>
         <body>
           redirect to <a href="./selenimum.html">selenimum.html</a>  
-        </body>
-        </html>
-        EOF
-        cat << EOF > htmldocs/index.html
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta http-equiv="refresh" content="0; url=./release/${TAG_NAME}/selenimum.html">
-        </head>
-        <body>
-          redirect to <a href="./release/${TAG_NAME}/selenimum.html">selenimum.html</a>  
         </body>
         </html>
         EOF

@@ -28,7 +28,11 @@ jobs:
       env:
         OUTPUT_DIR: ${{ steps.make_dir.outputs.output_dir }}
       run: |
-        docker exec nim-app nimble doc --index:on --project --out:${OUTPUT_DIR} src/selenimum.nim
+        docker exec nim-app nimble doc --index:on --project --out:${OUTPUT_DIR} \
+          '--git.url:https://github.com/${{ github.repository }}' \
+          '--git.commit:${{ github.sha }}' \
+          "--git.devel:${GITHUB_REF#refs/heads/}" \
+          src/selenimum.nim
 
     - name: create index.html
       shell: bash
