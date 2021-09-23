@@ -39,7 +39,7 @@ proc findElementBySelector*(session: SeleniumSession, query: string): Element =
 
 proc findElementById*(session: SeleniumSession, id: string): Element =
   ## Find a element by id attribute.
-  return session.findElement(query=id, strategy="id")
+  return session.findElement(query=fmt"#{id}")
 
 proc findElementByXPath*(session: SeleniumSession, xpath: string): Element =
   ## Find a element by XPath.
@@ -48,10 +48,6 @@ proc findElementByXPath*(session: SeleniumSession, xpath: string): Element =
 proc findElementByTagName*(session: SeleniumSession, tagName: string): Element =
   ## Find a element by tag name.
   return session.findElement(query=tagName, strategy="tag name")
-
-proc findElementByName*(session: SeleniumSession, name: string): Element =
-  ## Find a element by name attribute.
-  return session.findElement(query=name, strategy="name")
 
 proc findElements*(session: SeleniumSession, query: string, strategy: string = "css selector"): seq[Element] =
   ## Find some elements by `strategy` (default `"css selector"` ).
@@ -81,10 +77,6 @@ proc findElementsByTagName*(session: SeleniumSession, tagName: string): seq[Elem
   ## Find some elements by tag name.
   return session.findElements(query=tagName, strategy="tag name")
 
-proc findElementsByName*(session: SeleniumSession, name: string): seq[Element] =
-  ## Find some elements by name attribute.
-  return session.findElements(query=name, strategy="name")
-
 proc findElement*(element: Element, query: string, strategy: string = "css selector"): Element =
   ## Find a element from element by `strategy` (default `"css selector"` ).
   let body = %*{
@@ -103,7 +95,7 @@ proc findElementBySelector*(element: Element, query: string): Element =
 
 proc findElementById*(element: Element, id: string): Element =
   ## Find a element from element by id attribute.
-  return element.findElement(query=id, strategy="id")
+  return element.findElement(query=fmt"#{id}")
 
 proc findElementByXPath*(element: Element, xpath: string): Element =
   ## Find a element from element by XPath.
@@ -112,10 +104,6 @@ proc findElementByXPath*(element: Element, xpath: string): Element =
 proc findElementByTagName*(element: Element, tagName: string): Element =
   ## Find a element from element by tag name.
   return element.findElement(query=tagName, strategy="tag name")
-
-proc findElementByName*(element: Element, name: string): Element =
-  ## Find a element from element by name attribute.
-  return element.findElement(query=name, strategy="name")
 
 proc findElements*(element: Element, query: string, strategy: string = "css selector"): seq[Element] =
   ## Find some elements from element by `strategy` (default `"css selector"` ).
@@ -144,10 +132,6 @@ proc findElementsByXPath*(element: Element, xpath: string): seq[Element] =
 proc findElementsByTagName*(element: Element, tagName: string): seq[Element] =
   ## Find some elements from element by tag name.
   return element.findElements(query=tagName, strategy="tag name")
-
-proc findElementsByName*(element: Element, name: string): seq[Element] =
-  ## Find some elements from element by name attribute.
-  return element.findElements(query=name, strategy="name")
 
 proc click*(element: Element) =
   ## Click element.
