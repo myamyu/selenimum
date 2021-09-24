@@ -149,7 +149,7 @@ proc setValue*(element: Element, val: string) =
   let body = %*{
     "text": val,
   }
-  discard $element.post("/value", body)
+  discard element.post("/value", body)
 
 proc getTagName*(element: Element): string =
   ## Get element's tag name.
