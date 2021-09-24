@@ -144,6 +144,8 @@ proc getText*(element: Element): string =
 
 proc setValue*(element: Element, val: string) =
   ## Set value to `TEXTAREA` or `text INPUT` element.
+  ## 
+  ## !WARNING! the proc is not working! https://github.com/myamyu/selenimum/issues/22
   let body = %*{
     "text": val,
   }

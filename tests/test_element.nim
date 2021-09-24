@@ -1,4 +1,4 @@
-import unittest, strformat
+import unittest, strformat, os, uri
 import ./webdriver, selenimum
 
 suite "test element":
@@ -90,21 +90,56 @@ suite "test element":
     check(len(elems) == 2)
 
   test "click":
-    # TODO test
-    discard
-  
-  test "get tag name":
-    # TODO test
-    discard
+    session.navigateTo(fmt"{testSiteOrigin}/")
+    var elem: Element
 
-  test "set/clear value":
-    # TODO test
-    discard
+    elem = session.findElement(query="#navigate > li > a")
+    elem.click()
+    sleep(300) # wait for next page.
+    check($session.getCurrentUrl() == fmt"{testSiteOrigin}/index2.html")
 
   test "get attribute value":
-    # TODO test
-    discard
+    session.navigateTo(fmt"{testSiteOrigin}/")
+    var elem: Element
+    
+    elem = session.findElement(query="#navigate > li > a")
+    check(elem.getAttributeValue("href") == "index2.html")
+  
+  test "get tag name":
+    session.navigateTo(fmt"{testSiteOrigin}/")
+    var elem: Element
+
+    elem = session.findElementById("main")
+    check(elem.getTagName() == "div")
+
+  test "set/clear value":
+    session.navigateTo(fmt"{testSiteOrigin}/")
+    var elem: Element
+
+    checkpoint("clear value")
+    elem = session.findElement(query="#testForm > input[name=test1]")
+    elem.clearValue()
+    session.findElement(query="#testForm > input[type=submit]").click()
+    sleep(300) # wait for next page.
+    check($session.getCurrentUrl() == fmt"{testSiteOrigin}/?test1=")
+
+    checkpoint("set value")
+    echo "[TODO] write test when set value issue resolved. https://github.com/myamyu/selenimum/issues/22"
 
 suite "test element error case":
-  # TODO test
-  discard
+  let driver = newWebDriver()
+  var session: SeleniumSession
+
+  setup:
+    session = driver.newSession()
+  
+  teardown:
+    session.deleteSession()
+
+  test "not found element":
+    session.navigateTo(fmt"{testSiteOrigin}/")
+    var elem: Element
+
+    expect(SeleniumNotFoundException):
+      elem = session.findElement(query=".main > div")
+
