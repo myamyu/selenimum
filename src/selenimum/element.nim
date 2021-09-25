@@ -142,10 +142,13 @@ proc getText*(element: Element): string =
   let resp = element.get("/text")
   return resp{"value"}.getStr()
 
+proc clearValue*(element: Element) =
+  ## Clear `TEXTAREA` or `text INPUT` element's value.
+  discard element.post("/clear", %*{})
+
 proc setValue*(element: Element, val: string) =
   ## Set value to `TEXTAREA` or `text INPUT` element.
-  ## 
-  ## !WARNING! the proc is not working! https://github.com/myamyu/selenimum/issues/22
+  element.clearValue()
   let body = %*{
     "text": val,
   }
@@ -155,10 +158,6 @@ proc getTagName*(element: Element): string =
   ## Get element's tag name.
   let resp = element.get("/name")
   return resp{"value"}.getStr()
-
-proc clearValue*(element: Element) =
-  ## Clear `TEXTAREA` or `text INPUT` element's value.
-  discard element.post("/clear", %*{})
 
 proc getAttributeValue*(element: Element, name: string): string =
   ## Get value of element's attribute.
