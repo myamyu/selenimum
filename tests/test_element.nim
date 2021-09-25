@@ -124,7 +124,12 @@ suite "test element":
     check($session.getCurrentUrl() == fmt"{testSiteOrigin}/?test1=")
 
     checkpoint("set value")
-    echo "[TODO] write test when set value issue resolved. https://github.com/myamyu/selenimum/issues/22"
+    session.navigateTo(fmt"{testSiteOrigin}/")
+    elem = session.findElement(query="#testForm > input[name=test1]")
+    elem.setValue("tetetetest")
+    session.findElement(query="#testForm > input[type=submit]").click()
+    sleep(300) # wait for next page.
+    check($session.getCurrentUrl() == fmt"{testSiteOrigin}/?test1=tetetetest")
 
 suite "test element error case":
   let driver = newWebDriver()
