@@ -1,7 +1,7 @@
 import unittest, net
 import selenimum
 
-suite "web driver":
+suite "test webdriver":
 
   test "status":
     let driver = newSeleniumWebDriver(baseUrl="http://selenium-hub:4444/wd/hub")
