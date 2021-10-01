@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.2"
+version       = "0.1.3"
 author        = "myamyu"
 description   = "WebDriver for Selenium(selenium-hub)."
 license       = "MIT"
@@ -9,7 +9,7 @@ srcDir        = "src"
 
 # Dependencies
 
-requires "nim >= 1.4.8"
+requires "nim >= 1.2.0"
 
 # Tasks
 
