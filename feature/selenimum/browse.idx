@@ -8,4 +8,4 @@ getTitle	selenimum/browse.html#getTitle,SeleniumSession	browse: getTitle(session
 getPageSource	selenimum/browse.html#getPageSource,SeleniumSession	browse: getPageSource(session: SeleniumSession): string	
 takeScreenshot	selenimum/browse.html#takeScreenshot,SeleniumSession	browse: takeScreenshot(session: SeleniumSession): string	
 saveScreenshot	selenimum/browse.html#saveScreenshot,SeleniumSession,string	browse: saveScreenshot(session: SeleniumSession; filePath: string)	
-TODO	selenimum/browse.html#todo	 TODO	
+TODO	browse.html#todo	 TODO	
