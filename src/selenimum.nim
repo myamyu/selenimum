@@ -120,27 +120,27 @@
 ## 
 ## Usage
 ## ---------------
-## 
+##
 runnableExamples:
   import selenimum, os
 
   proc main() =
     let
-      driver = newSeleniumWebDriver(baseUrl="http://selenium-hub:4444/wd/hub")
+      driver = newSeleniumWebDriver(baseUrl = "http://selenium-hub:4444/wd/hub")
       session = driver.newSession()
     defer:
       session.deleteSession()
-    
+
     try:
       session.navigateTo("https://example.com/")
       echo "page title: ", session.getTitle()
       ## Output:
       ##    page title: Example Domain
-      let h1 = session.findElement(query="h1")
+      let h1 = session.findElement(query = "h1")
       echo "h1 text:", h1.getText()
       ## Output:
       ##    h1 text: Example Domain
-      let link = session.findElement(query="a")
+      let link = session.findElement(query = "a")
       link.click()
       sleep(300)
       echo "page title: ", session.getTitle()
@@ -152,5 +152,7 @@ runnableExamples:
 
   main()
 
-import selenimum/[browse, cookie, element, errors, frame, rect, script, session, webdriver, window]
-export browse, cookie, element, errors, frame, rect, script, session, webdriver, window
+import selenimum/[browse, cookie, element, errors, frame, rect, script, session,
+    webdriver, window, selenimum_macros]
+export browse, cookie, element, errors, frame, rect, script, session, webdriver,
+    window, selenimum_macros

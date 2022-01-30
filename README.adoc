@@ -93,6 +93,50 @@ let
   session = driver.newSession(capabilities=capabilities)
 ----
 
+=== control selenium example by macro
+
+[source,nim]
+----
+import selenimum, strformat
+
+proc main() =
+  selenium "http://selenium-hub:4444/wd/hub":
+    chrome:
+    # navigate to Yahoo!JAPAN
+    navigateTo "https://www.yahoo.co.jp/" 
+    let title = session.getTitle()
+    echo(&"page title:{title}")
+    session.saveScreenshot("yahoo-japan.png")
+    echo("screenshot saved.")
+
+try:
+  main()
+except Exception as e:
+  echo("ERROR!!", e.getStackTrace())
+----
+
+if you want to use firefox.
+
+[source,nim]
+----
+import selenimum, strformat
+
+proc main() =
+  selenium "http://selenium-hub:4444/wd/hub":
+    firefox:
+    # navigate to Yahoo!JAPAN
+    navigateTo "https://www.yahoo.co.jp/" 
+    let title = session.getTitle()
+    echo(&"page title:{title}")
+    session.saveScreenshot("yahoo-japan.png")
+    echo("screenshot saved.")
+
+try:
+  main()
+except Exception as e:
+  echo("ERROR!!", e.getStackTrace())
+----
+
 == Docs
 
 * Latest release version +

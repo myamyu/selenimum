@@ -5,24 +5,26 @@ type
   SeleniumWebDriver* = ref object
     baseUrl*: Uri
     client*: HttpClient
-  
+
   SeleniumStatus* = object
     ready*: bool
     message*: string
     buildVersion*: string
 
-proc newSeleniumWebDriver*(baseUrl:string = "http://localhost:4444/wd/hub", timeout:int = 15000): SeleniumWebDriver =
+proc newSeleniumWebDriver*(baseUrl: string = "http://localhost:4444/wd/hub",
+    timeout: int = 15000): SeleniumWebDriver =
   ## Create new WebDriver for Selenium.
-  ## 
+  ##
   ## Params
   ## ^^^^^^^^
-  ## 
+  ##
   ## `baseUrl`
   ##    Your Selenium-hub's URL.
   ## `timeout`
   ##    The amount of time of request timeout, in milliseconds.
-  ## 
-  SeleniumWebDriver(baseUrl: baseUrl.parseUri, client: newHttpClient(timeout = timeout))
+  ##
+  SeleniumWebDriver(baseUrl: baseUrl.parseUri, client: newHttpClient(
+      timeout = timeout))
 
 proc get*(driver: SeleniumWebDriver, path: string): JsonNode =
   ## Call selenium API GET method.

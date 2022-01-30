@@ -18,3 +18,6 @@ task docs, "Generate document":
 
 task examples, "Run example codes":
   exec "nim c --outdir:examples/bin -r examples/example.nim"
+
+task examples2, "Run example_macros codes":
+  exec "nim c --outdir:examples/bin -r examples/example_macros.nim"
