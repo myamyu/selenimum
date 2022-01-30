@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.3"
+version       = "0.2.0"
 author        = "myamyu"
 description   = "WebDriver for Selenium(selenium-hub)."
 license       = "MIT"
