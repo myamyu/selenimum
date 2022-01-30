@@ -3,8 +3,7 @@ import selenimum
 
 const fmtStr = "$date $time - [$levelname] "
 addHandler(newConsoleLogger(fmtStr = fmtStr))
-addHandler(newRollingFileLogger(filename = "examples/logs/example.log",
-    fmtStr = fmtStr))
+addHandler(newRollingFileLogger(filename = "examples/logs/example.log", fmtStr = fmtStr))
 
 proc main() =
   info("start the example.")

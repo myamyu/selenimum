@@ -12,4 +12,4 @@ proc executeScript*(session: SeleniumSession, script: string) =
 ## TODO
 ## -------
 ## * executeAsyncScript https://w3c.github.io/webdriver/#dfn-execute-async-script
-## 
+##

@@ -14,10 +14,10 @@ proc makeErrorMessage(resp: Response): string =
 
 proc checkHttpResponse*(resp: Response) =
   ## Check Selenium API response.
-  ## 
+  ##
   ## * Raise `SeleniumNotFoundException` if HTTP 404 response without `"unknown command"`.
   ## * Raise `SeleniumServerException` if other HTTP error(4xx, 5xx).
-  ## 
+  ##
   if resp.code == Http404:
     let obj = parseJson(resp.body)
     if obj{"value", "error"}.getStr() == "unknown command":
