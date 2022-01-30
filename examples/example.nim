@@ -2,8 +2,9 @@ import logging, strformat, uri, os
 import selenimum
 
 const fmtStr = "$date $time - [$levelname] "
-addHandler(newConsoleLogger(fmtStr=fmtStr))
-addHandler(newRollingFileLogger(filename="examples/logs/example.log", fmtStr=fmtStr))
+addHandler(newConsoleLogger(fmtStr = fmtStr))
+addHandler(newRollingFileLogger(filename = "examples/logs/example.log",
+    fmtStr = fmtStr))
 
 proc main() =
   info("start the example.")
@@ -11,7 +12,7 @@ proc main() =
     info("end of example.")
 
   let
-    driver = newSeleniumWebDriver()
+    driver = newSeleniumWebDriver(baseUrl = "http://selenium-hub:4444/wd/hub")
     session = driver.newSession()
 
   info(fmt"sessionID [{session.id}]")
@@ -24,10 +25,10 @@ proc main() =
     info(&"Page Title:[{title}] URL[{url}]")
 
     # search web by yahoo japan.
-    var elem = session.findElement(query="form input")
+    var elem = session.findElement(query = "form input")
     var searchWord = "フィロソフィーのダンス"
     elem.setValue(searchWord)
-    elem = session.findElement(query="form button")
+    elem = session.findElement(query = "form button")
     elem.click()
     info(&"searching [{searchWord}] ...")
     sleep(300) # wait for next page.
@@ -37,11 +38,11 @@ proc main() =
     info(&"Page Title: {title}")
     const outputPath = "examples/outputs"
     session.saveScreenshot(&"{outputPath}/searchResults.png")
-    var links = session.findElements(query="a.sw-Card__titleInner")
+    var links = session.findElements(query = "a.sw-Card__titleInner")
     var urls: seq[string] = @[]
     for i, link in links:
       let linkUrl = link.getAttributeValue("href")
-      let h3 = link.findElement(query="h3")
+      let h3 = link.findElement(query = "h3")
       let linkTitle = h3.getText()
       info(&"No.{i} {linkTitle} {linkUrl}")
       urls.add(linkUrl)
