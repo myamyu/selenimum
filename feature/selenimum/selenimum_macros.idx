@@ -1,0 +1,7 @@
+selenium	selenimum/selenimum_macros.html#selenium.m,string,untyped	selenimum_macros: selenium(baseUrl: string; body: untyped): untyped	
+chrome	selenimum/selenimum_macros.html#chrome.m,untyped	selenimum_macros: chrome(body: untyped): untyped	
+firefox	selenimum/selenimum_macros.html#firefox.m,untyped	selenimum_macros: firefox(body: untyped): untyped	
+navigateTo	selenimum/selenimum_macros.html#navigateTo.m,string	selenimum_macros: navigateTo(url: string): untyped	
+setValue	selenimum/selenimum_macros.html#setValue.m,string,string	selenimum_macros: setValue(query: string; val: string): untyped	
+click	selenimum/selenimum_macros.html#click.m,string	selenimum_macros: click(query: string): untyped	
+elements	selenimum/selenimum_macros.html#elements.m,string,untyped	selenimum_macros: elements(query: string; body: untyped): untyped	
