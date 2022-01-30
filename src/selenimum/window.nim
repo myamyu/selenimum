@@ -14,7 +14,7 @@ proc getWindowRect*(session: SeleniumSession): Rect =
 
 ## TODO
 ## ---------
-## 
+##
 ## * newWindow https://w3c.github.io/webdriver/#dfn-new-window
 ## * closeWindow https://w3c.github.io/webdriver/#dfn-close-window
 ## * switchToWindow https://w3c.github.io/webdriver/#dfn-switch-to-window
@@ -24,4 +24,4 @@ proc getWindowRect*(session: SeleniumSession): Rect =
 ## * fullscreenWindow https://w3c.github.io/webdriver/#dfn-fullscreen-window
 ## * getWindowHandle https://w3c.github.io/webdriver/#dfn-get-window-handle
 ## * getWindowHandles https://w3c.github.io/webdriver/#dfn-get-window-handles
-## 
+##
