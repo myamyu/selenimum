@@ -28,13 +28,12 @@ proc main() =
       title = session.getTitle()
       info(&"Page Title: {title}")
       const outputPath = "examples/outputs"
-      session.saveScreenshot(&"{outputPath}/searchResults.png")
+      screenshot &"{outputPath}/searchResults.png"
 
       var urls: seq[string] = @[]
       elements "a.sw-Card__titleInner":
         let linkUrl = element.getAttributeValue("href")
-        let h3 = element.findElement(query = "h3")
-        let linkTitle = h3.getText()
+        let linkTitle = element.getText("h3")
         info(&"No.{index} {linkTitle} {linkUrl}")
         urls.add(linkUrl)
 
@@ -46,7 +45,7 @@ proc main() =
         info(&"Page Title:[{title}]")
         sleep(1500)
         let pngFile = &"{outputPath}/result-{$i}.png"
-        session.saveScreenshot(pngFile)
+        screenshot pngFile
         info(&"save to [{pngFile}]")
 
 try:

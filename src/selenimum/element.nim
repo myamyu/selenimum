@@ -21,7 +21,7 @@ proc post*(element: Element, path: string, body: JsonNode): JsonNode =
 proc findElement*(session: SeleniumSession, query: string, strategy: string = "css selector"): Element =
   ## Find a element by `strategy` (default `"css selector"` ).
   ##
-  ## See https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelement for strategy.
+  ## See https://www.selenium.dev/documentation/legacy/json_wire_protocol/#sessionsessionidelement for strategy.
   ##
   let body = %*{
     "using": strategy,
@@ -137,10 +137,20 @@ proc click*(element: Element) =
   ## Click element.
   discard element.post("/click", %*{})
 
+proc click*(element: Element, query: string, strategy: string = "css selector") =
+  ## Find element from element and click.
+  let e = element.findElement(query, strategy)
+  e.click()
+
 proc getText*(element: Element): string =
   ## Get element's innner text.
   let resp = element.get("/text")
   return resp{"value"}.getStr()
+
+proc getText*(element: Element, query: string, strategy: string = "css selector"): string =
+  ## Find element from element and get inner text.
+  let e = element.findElement(query, strategy)
+  return e.getText()
 
 proc clearValue*(element: Element) =
   ## Clear `TEXTAREA` or `text INPUT` element's value.
@@ -153,6 +163,19 @@ proc setValue*(element: Element, val: string) =
     "text": val,
   }
   discard element.post("/value", body)
+
+proc setValue*(element: Element, query: string, val: string, strategy: string = "css selector") =
+  ## Find element from element and set value.
+  let e = element.findElement(query, strategy)
+  e.setValue(val)
+
+proc `value=`*(element: Element, val: string) =
+  ## Set value to `TEXTAREA` or `text INPUT` element.
+  element.setValue(val)
+
+proc `value[]=`*(element: Element, query: string, val: string) =
+  ## Find element from element and set value.
+  element.setValue(query, val)
 
 proc getTagName*(element: Element): string =
   ## Get element's tag name.
