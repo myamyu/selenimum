@@ -1,0 +1,13 @@
+{
+	"name": "Selenimum Dev Container",
+	"dockerComposeFile": [
+		"../vscode.docker-compose.yaml",
+		"docker-compose.yml"
+	],
+	"service": "nim-dev",
+	"workspaceFolder": "/workspace",
+	"settings": {},
+	"extensions": [
+		"nimsaem.nimvscode"
+	]
+}
