@@ -114,12 +114,22 @@ function main() {
     title="firefox(body: untyped): untyped"><wbr />firefox<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#navigateTo.m%2Cstring"
     title="navigateTo(url: string): untyped"><wbr />navigate<wbr />To<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#back.m"
+    title="back(): untyped"><wbr />back<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#forward.m"
+    title="forward(): untyped"><wbr />forward<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#refresh.m"
+    title="refresh(): untyped"><wbr />refresh<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#setValue.m%2Cstring%2Cstring"
     title="setValue(query: string; val: string): untyped"><wbr />set<wbr />Value<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#click.m%2Cstring"
     title="click(query: string): untyped"><wbr />click<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#getText.m%2Cstring"
+    title="getText(query: string): string"><wbr />get<wbr />Text<span class="attachedType"></span></a></li>
   <li><a class="reference" href="#elements.m%2Cstring%2Cuntyped"
     title="elements(query: string; body: untyped): untyped"><wbr />elements<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#screenshot.m%2Cstring"
+    title="screenshot(filePath: string): untyped"><wbr />screenshot<span class="attachedType"></span></a></li>
 
   </ul>
 </li>
@@ -134,7 +144,7 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="webdriver.html">webdriver</a>, <a class="reference external" href="session.html">session</a>
+<a class="reference external" href="webdriver.html">webdriver</a>, <a class="reference external" href="session.html">session</a>, <a class="reference external" href="element.html">element</a>
 </dl></div>
 <div class="section" id="17">
 <h1><a class="toc-backref" href="#17">Macros</a></h1>
@@ -145,7 +155,7 @@ function main() {
 
 Start selenium block.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/d633ab82efc731a44f9bf9371673f6e6693e4031/src/selenimum/selenimum_macros.nim#L4"
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L4"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L4" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -156,7 +166,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Start chrome session block.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/d633ab82efc731a44f9bf9371673f6e6693e4031/src/selenimum/selenimum_macros.nim#L12"
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L12"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -167,7 +177,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Start firefox session block.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/d633ab82efc731a44f9bf9371673f6e6693e4031/src/selenimum/selenimum_macros.nim#L24"
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L24"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -178,9 +188,42 @@ class="link-seesrc" target="_blank">Source</a>
 
 Navigate to url.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/d633ab82efc731a44f9bf9371673f6e6693e4031/src/selenimum/selenimum_macros.nim#L41"
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L41"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L41" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="back.m"></a>
+<dt><pre><span class="Keyword">macro</span> <a href="#back.m"><span class="Identifier">back</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L47"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L47" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="forward.m"></a>
+<dt><pre><span class="Keyword">macro</span> <a href="#forward.m"><span class="Identifier">forward</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L52"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="refresh.m"></a>
+<dt><pre><span class="Keyword">macro</span> <a href="#refresh.m"><span class="Identifier">refresh</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L57"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L57" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="setValue.m,string,string"></a>
@@ -189,9 +232,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/d633ab82efc731a44f9bf9371673f6e6693e4031/src/selenimum/selenimum_macros.nim#L47"
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L62"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L47" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L62" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="click.m,string"></a>
@@ -200,20 +243,42 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/d633ab82efc731a44f9bf9371673f6e6693e4031/src/selenimum/selenimum_macros.nim#L55"
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L70"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L70" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="getText.m,string"></a>
+<dt><pre><span class="Keyword">macro</span> <a href="#getText.m%2Cstring"><span class="Identifier">getText</span></a><span class="Other">(</span><span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L78"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L78" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="elements.m,string,untyped"></a>
 <dt><pre><span class="Keyword">macro</span> <a href="#elements.m%2Cstring%2Cuntyped"><span class="Identifier">elements</span></a><span class="Other">(</span><span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
 <dd>
 
+Start elements loop block.
+&nbsp;&nbsp;<a
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L86"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L86" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="screenshot.m,string"></a>
+<dt><pre><span class="Keyword">macro</span> <a href="#screenshot.m%2Cstring"><span class="Identifier">screenshot</span></a><span class="Other">(</span><span class="Identifier">filePath</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span></pre></dt>
+<dd>
+
 
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/d633ab82efc731a44f9bf9371673f6e6693e4031/src/selenimum/selenimum_macros.nim#L63"
+href="https://github.com/myamyu/selenimum/tree/a8a7b0b3749f3d20b4257e3f5e15b9b04a1ae4ce/src/selenimum/selenimum_macros.nim#L96"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/myamyu/selenimum/edit/feature/create-macros/src/selenimum/selenimum_macros.nim#L96" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -226,7 +291,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-01-30 15:38:11 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-01-30 17:15:12 UTC</small>
       </div>
     </div>
   </div>

@@ -20,9 +20,14 @@ findElementsBySelector	selenimum/element.html#findElementsBySelector,Element,str
 findElementsByXPath	selenimum/element.html#findElementsByXPath,Element,string	element: findElementsByXPath(element: Element; xpath: string): seq[Element]	
 findElementsByTagName	selenimum/element.html#findElementsByTagName,Element,string	element: findElementsByTagName(element: Element; tagName: string): seq[Element]	
 click	selenimum/element.html#click,Element	element: click(element: Element)	
+click	selenimum/element.html#click,Element,string,string	element: click(element: Element; query: string; strategy: string = &quot;css selector&quot;)	
 getText	selenimum/element.html#getText,Element	element: getText(element: Element): string	
+getText	selenimum/element.html#getText,Element,string,string	element: getText(element: Element; query: string; strategy: string = &quot;css selector&quot;): string	
 clearValue	selenimum/element.html#clearValue,Element	element: clearValue(element: Element)	
 setValue	selenimum/element.html#setValue,Element,string	element: setValue(element: Element; val: string)	
+setValue	selenimum/element.html#setValue,Element,string,string,string	element: setValue(element: Element; query: string; val: string;\n         strategy: string = &quot;css selector&quot;)	
+value=	selenimum/element.html#value=,Element,string	element: value=(element: Element; val: string)	
+value[]=	selenimum/element.html#value[]=,Element,string,string	element: value[]=(element: Element; query: string; val: string)	
 getTagName	selenimum/element.html#getTagName,Element	element: getTagName(element: Element): string	
 getAttributeValue	selenimum/element.html#getAttributeValue,Element,string	element: getAttributeValue(element: Element; name: string): string	
 TODO	element.html#todo	 TODO	
