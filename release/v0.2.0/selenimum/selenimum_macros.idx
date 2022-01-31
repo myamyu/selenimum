@@ -1,0 +1,17 @@
+selenium	selenimum/selenimum_macros.html#selenium.m,string,untyped	selenimum_macros: selenium(baseUrl: string; body: untyped): untyped	
+chrome	selenimum/selenimum_macros.html#chrome.m,untyped	selenimum_macros: chrome(body: untyped): untyped	
+firefox	selenimum/selenimum_macros.html#firefox.m,untyped	selenimum_macros: firefox(body: untyped): untyped	
+navigateTo	selenimum/selenimum_macros.html#navigateTo.m,string	selenimum_macros: navigateTo(url: string): untyped	
+back	selenimum/selenimum_macros.html#back.m	selenimum_macros: back(): untyped	
+forward	selenimum/selenimum_macros.html#forward.m	selenimum_macros: forward(): untyped	
+refresh	selenimum/selenimum_macros.html#refresh.m	selenimum_macros: refresh(): untyped	
+getTitle	selenimum/selenimum_macros.html#getTitle.m	selenimum_macros: getTitle(): string	
+getCurrentUrl	selenimum/selenimum_macros.html#getCurrentUrl.m	selenimum_macros: getCurrentUrl(): Uri	
+getPageSource	selenimum/selenimum_macros.html#getPageSource.m	selenimum_macros: getPageSource(): string	
+findElement	selenimum/selenimum_macros.html#findElement.m,string,string	selenimum_macros: findElement(query: string; strategy: string = &quot;css selector&quot;): Element	
+clearValue	selenimum/selenimum_macros.html#clearValue.m,string	selenimum_macros: clearValue(query: string): untyped	
+setValue	selenimum/selenimum_macros.html#setValue.m,string,string	selenimum_macros: setValue(query: string; val: string): untyped	
+click	selenimum/selenimum_macros.html#click.m,string	selenimum_macros: click(query: string): untyped	
+getText	selenimum/selenimum_macros.html#getText.m,string	selenimum_macros: getText(query: string): string	
+elements	selenimum/selenimum_macros.html#elements.m,string,untyped	selenimum_macros: elements(query: string; body: untyped): untyped	
+screenshot	selenimum/selenimum_macros.html#screenshot.m,string	selenimum_macros: screenshot(filePath: string): untyped	
