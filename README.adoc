@@ -102,12 +102,12 @@ import selenimum, strformat
 proc main() =
   selenium "http://selenium-hub:4444/wd/hub":
     chrome:
-    # navigate to Yahoo!JAPAN
-    navigateTo "https://www.yahoo.co.jp/" 
-    let title = session.getTitle()
-    echo(&"page title:{title}")
-    session.saveScreenshot("yahoo-japan.png")
-    echo("screenshot saved.")
+      # navigate to Yahoo!JAPAN
+      navigateTo "https://www.yahoo.co.jp/" 
+      let title = session.getTitle()
+      echo(&"page title:{title}")
+      session.saveScreenshot("yahoo-japan.png")
+      echo("screenshot saved.")
 
 try:
   main()
@@ -124,12 +124,12 @@ import selenimum, strformat
 proc main() =
   selenium "http://selenium-hub:4444/wd/hub":
     firefox:
-    # navigate to Yahoo!JAPAN
-    navigateTo "https://www.yahoo.co.jp/" 
-    let title = session.getTitle()
-    echo(&"page title:{title}")
-    session.saveScreenshot("yahoo-japan.png")
-    echo("screenshot saved.")
+      # navigate to Yahoo!JAPAN
+      navigateTo "https://www.yahoo.co.jp/" 
+      let title = session.getTitle()
+      echo(&"page title:{title}")
+      session.saveScreenshot("yahoo-japan.png")
+      echo("screenshot saved.")
 
 try:
   main()
