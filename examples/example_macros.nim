@@ -1,4 +1,4 @@
-import logging, strformat, uri, os
+import logging, strformat, os
 import selenimum
 
 const fmtStr = "$date $time - [$levelname] "
@@ -14,8 +14,8 @@ proc main() =
     firefox:
       info("Navigate to Yahoo!JAPAN ...")
       navigateTo "https://www.yahoo.co.jp"
-      var url = session.getCurrentUrl()
-      var title = session.getTitle()
+      var url = getCurrentUrl()
+      var title = getTitle()
       info(&"Page Title:[{title}] URL[{url}]")
 
       var searchWord = "フィロソフィーのダンス"
@@ -25,7 +25,7 @@ proc main() =
       info(&"searching [{searchWord}] ...")
       sleep(300) # wait for next page.
 
-      title = session.getTitle()
+      title = getTitle()
       info(&"Page Title: {title}")
       const outputPath = "examples/outputs"
       screenshot &"{outputPath}/searchResults.png"
@@ -41,7 +41,7 @@ proc main() =
       for i, url in urls:
         info(&"Navigate to [{url}] ...")
         navigateTo url
-        title = session.getTitle()
+        title = getTitle()
         info(&"Page Title:[{title}]")
         sleep(1500)
         let pngFile = &"{outputPath}/result-{$i}.png"

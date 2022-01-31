@@ -125,30 +125,20 @@ runnableExamples:
   import selenimum, os
 
   proc main() =
-    let
-      driver = newSeleniumWebDriver(baseUrl = "http://selenium-hub:4444/wd/hub")
-      session = driver.newSession()
-    defer:
-      session.deleteSession()
-
-    try:
-      session.navigateTo("https://example.com/")
-      echo "page title: ", session.getTitle()
-      ## Output:
-      ##    page title: Example Domain
-      let h1 = session.findElement(query = "h1")
-      echo "h1 text:", h1.getText()
-      ## Output:
-      ##    h1 text: Example Domain
-      let link = session.findElement(query = "a")
-      link.click()
-      sleep(300)
-      echo "page title: ", session.getTitle()
-      ## Output:
-      ##    page title: IANA — IANA-managed Reserved Domains
-    except Exception as e:
-      echo("ERROR!! ", e.msg)
-      echo(e.getStackTrace())
+    selenium "http://selenium-hub:4444/wd/hub":
+      chrome:
+        navigateTo "https://example.com/"
+        echo "page title: ", getTitle()
+        ## Output:
+        ##    page title: Example Domain
+        echo "h1 text:", getText("h1")
+        ## Output:
+        ##    h1 text: Example Domain
+        click "a"
+        sleep(300)
+        echo "page title: ", getTitle()
+        ## Output:
+        ##    page title: IANA — IANA-managed Reserved Domains
 
   main()
 
