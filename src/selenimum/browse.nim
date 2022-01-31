@@ -40,7 +40,7 @@ proc getPageSource*(session: SeleniumSession): string =
 
 proc takeScreenshot*(session: SeleniumSession): string =
   ## Take screenshot of current page.
-  ## 
+  ##
   ## Returns the screenshot as a base64 encoded PNG.
   let resp = session.get("/screenshot")
   return resp{"value"}.getStr()
@@ -56,9 +56,9 @@ proc saveScreenshot*(session: SeleniumSession, filePath: string) =
 
 ## TODO
 ## ------
-## 
+##
 ## * dismissAlert https://w3c.github.io/webdriver/#dfn-dismiss-alert
 ## * acceptAlert https://w3c.github.io/webdriver/#dfn-accept-alert
 ## * getAlertText https://w3c.github.io/webdriver/#dfn-get-alert-text
 ## * sendAlertText https://w3c.github.io/webdriver/#dfn-send-alert-text
-## 
+##

@@ -10,7 +10,7 @@ type TestWebDriver* = object
 proc newWebDriver*(): TestWebDriver =
   ## create WebDriver for test.
   return TestWebDriver(
-    webDriver: newSeleniumWebDriver(baseUrl="http://selenium-hub:4444/wd/hub")
+    webDriver: newSeleniumWebDriver(baseUrl = "http://selenium-hub:4444/wd/hub")
   )
 
 proc newSession*(driver: TestWebDriver): SeleniumSession =

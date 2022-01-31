@@ -19,15 +19,15 @@ let
     "requiredCapabilities": {}
   }
 
-proc newSession*(driver: SeleniumWebDriver, capabilities:JsonNode = defaultCapabilities): SeleniumSession =
+proc newSession*(driver: SeleniumWebDriver, capabilities: JsonNode = defaultCapabilities): SeleniumSession =
   ## Create new Selenium session.
-  ## 
+  ##
   ## Default capabilities is use chrome.
-  ## 
+  ##
   ## If want to use firefox:
-  ## 
+  ##
   ## .. code-block:: Nim
-  ##  let 
+  ##  let
   ##    capabilities = %*{
   ##      "desiredCapabilities": {
   ##        "browserName": "firefox"
@@ -35,9 +35,9 @@ proc newSession*(driver: SeleniumWebDriver, capabilities:JsonNode = defaultCapab
   ##      "requiredCapabilities": {}
   ##    }
   ##    session = driver.newSession(capabilities=capabilities)
-  ## 
+  ##
   ## See https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#capabilities-json-object for capabilities.
-  ## 
+  ##
 
 
   # check status
@@ -59,25 +59,25 @@ proc deleteSession*(session: SeleniumSession) =
 
 proc get*(session: SeleniumSession, path: string): JsonNode =
   ## Call selenium API GET method for Session.
-  ## 
+  ##
   ## If path = `"/url"` , call `GET /session/{sessionId}/url`.
-  ## 
+  ##
   let driver = session.driver
   result = driver.get(fmt"/session/{session.id}{path}")
 
 proc post*(session: SeleniumSession, path: string, body: JsonNode): JsonNode =
   ## Call selenium API POST method for Session.
-  ## 
+  ##
   ## If path = `"/url"` , call `POST /session/{sessionId}/url`.
-  ## 
+  ##
   let driver = session.driver
   result = driver.post(fmt"/session/{session.id}{path}", body)
 
 proc delete*(session: SeleniumSession, path: string) =
   ## Call selenium API DELETE method for Session.
-  ## 
+  ##
   ## If path = `"/cookie"` , call `DELETE /session/{sessionId}/cookie`.
-  ## 
+  ##
   let driver = session.driver
   driver.delete(fmt"/session/{session.id}{path}")
 
@@ -93,6 +93,6 @@ proc getTimeouts*(session: SeleniumSession): Timeouts =
 
 ## TODO
 ## --------
-## 
+##
 ## * setTimeouts https://w3c.github.io/webdriver/#dfn-set-timeouts
-## 
+##
