@@ -162,12 +162,23 @@ function main() {
     title="findElementsByTagName(element: Element; tagName: string): seq[Element]"><wbr />find<wbr />Elements<wbr />By<wbr />Tag<wbr />Name<span class="attachedType">Element</span></a></li>
   <li><a class="reference" href="#click%2CElement"
     title="click(element: Element)"><wbr />click<span class="attachedType">Element</span></a></li>
+  <li><a class="reference" href="#click%2CElement%2Cstring%2Cstring"
+    title="click(element: Element; query: string; strategy: string = &quot;css selector&quot;)"><wbr />click<span class="attachedType">Element</span></a></li>
   <li><a class="reference" href="#getText%2CElement"
     title="getText(element: Element): string"><wbr />get<wbr />Text<span class="attachedType">Element</span></a></li>
+  <li><a class="reference" href="#getText%2CElement%2Cstring%2Cstring"
+    title="getText(element: Element; query: string; strategy: string = &quot;css selector&quot;): string"><wbr />get<wbr />Text<span class="attachedType">Element</span></a></li>
   <li><a class="reference" href="#clearValue%2CElement"
     title="clearValue(element: Element)"><wbr />clear<wbr />Value<span class="attachedType">Element</span></a></li>
   <li><a class="reference" href="#setValue%2CElement%2Cstring"
     title="setValue(element: Element; val: string)"><wbr />set<wbr />Value<span class="attachedType">Element</span></a></li>
+  <li><a class="reference" href="#setValue%2CElement%2Cstring%2Cstring%2Cstring"
+    title="setValue(element: Element; query: string; val: string;
+         strategy: string = &quot;css selector&quot;)"><wbr />set<wbr />Value<span class="attachedType">Element</span></a></li>
+  <li><a class="reference" href="#value%3D%2CElement%2Cstring"
+    title="value=(element: Element; val: string)"><wbr />value=<span class="attachedType">Element</span></a></li>
+  <li><a class="reference" href="#value%5B%5D%3D%2CElement%2Cstring%2Cstring"
+    title="value[]=(element: Element; query: string; val: string)"><wbr />value[]=<span class="attachedType">Element</span></a></li>
   <li><a class="reference" href="#getTagName%2CElement"
     title="getTagName(element: Element): string"><wbr />get<wbr />Tag<wbr />Name<span class="attachedType">Element</span></a></li>
   <li><a class="reference" href="#getAttributeValue%2CElement%2Cstring"
@@ -206,7 +217,7 @@ function main() {
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L5"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L5"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L5" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -228,7 +239,7 @@ class="link-seesrc" target="_blank">Source</a>
 <p>If path = <tt class="docutils literal"><span class="pre">&quot;/text&quot;</span></tt> , call <tt class="docutils literal"><span class="pre">GET /session/{sessionId}/element/{id}/text</span></tt>.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L9"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L9"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L9" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -245,7 +256,7 @@ class="link-seesrc" target="_blank">Source</a>
 <p>If path = <tt class="docutils literal"><span class="pre">&quot;/click&quot;</span></tt> , call <tt class="docutils literal"><span class="pre">POST /session/{sessionId}/element/{id}/click</span></tt>.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L15"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L15"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -260,10 +271,10 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 <p>Find a element by <tt class="docutils literal"><span class="pre">strategy</span></tt> (default <tt class="docutils literal"><span class="pre">&quot;css selector&quot;</span></tt> ).</p>
-<p>See <a class="reference external" href="https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelement">https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidelement</a> for strategy. </p>
+<p>See <a class="reference external" href="https://www.selenium.dev/documentation/legacy/json_wire_protocol/#sessionsessionidelement">https://www.selenium.dev/documentation/legacy/json_wire_protocol/#sessionsessionidelement</a> for strategy. </p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L21"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L21"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -278,7 +289,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find a element by css selector.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L36"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L36"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -293,7 +304,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find a element by id attribute.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L40"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L40"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -308,7 +319,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find a element by XPath.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L44"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L44"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -323,7 +334,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find a element by tag name.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L48"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L48"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -339,7 +350,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find some elements by <tt class="docutils literal"><span class="pre">strategy</span></tt> (default <tt class="docutils literal"><span class="pre">&quot;css selector&quot;</span></tt> ).
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L52"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L52"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -354,7 +365,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find some elements by css selector.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L68"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L68"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -369,7 +380,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find some elements by XPath.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L72"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L72"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -384,7 +395,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find some elements by tag name.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L76"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L76"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L76" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -399,7 +410,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find a element from element by <tt class="docutils literal"><span class="pre">strategy</span></tt> (default <tt class="docutils literal"><span class="pre">&quot;css selector&quot;</span></tt> ).
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L80"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L80"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L80" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -414,7 +425,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find a element from element by css selector.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L92"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L92"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L92" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -429,7 +440,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find a element from element by id attribute.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L96"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L96"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L96" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -444,7 +455,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find a element from element by XPath.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L100"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L100"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L100" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -459,7 +470,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find a element from element by tag name.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L104"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L104"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L104" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -475,7 +486,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find some elements from element by <tt class="docutils literal"><span class="pre">strategy</span></tt> (default <tt class="docutils literal"><span class="pre">&quot;css selector&quot;</span></tt> ).
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L108"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L108"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L108" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -490,7 +501,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find some elements from element by css selector.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L124"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L124"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L124" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -505,7 +516,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find some elements from element by XPath.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L128"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L128"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L128" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -520,7 +531,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Find some elements from element by tag name.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L132"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L132"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L132" class="link-seesrc" target="_blank" >Edit</a>
 
@@ -536,9 +547,24 @@ class="link-seesrc" target="_blank">Source</a>
 
 Click element.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L136"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L136"
 class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L136" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="click,Element,string,string"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#click%2CElement%2Cstring%2Cstring"><span class="Identifier">click</span></a><span class="Other">(</span><span class="Identifier">element</span><span class="Other">:</span> <a href="element.html#Element"><span class="Identifier">Element</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">strategy</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;css selector&quot;</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span>
+    <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">HttpRequestError</span><span class="Other">,</span> <span class="Identifier">SslError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span>
+    <span class="Identifier">TimeoutError</span><span class="Other">,</span> <span class="Identifier">ProtocolError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">OverflowError</span><span class="Other">,</span> <span class="Identifier">JsonParsingError</span><span class="Other">,</span>
+    <span class="Identifier">SeleniumServerException</span><span class="Other">,</span> <span class="Identifier">SeleniumNotFoundException</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+Find element from element and click.
+&nbsp;&nbsp;<a
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L140"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L140" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="getText,Element"></a>
@@ -550,9 +576,24 @@ class="link-seesrc" target="_blank">Source</a>
 
 Get element's innner text.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L140"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L145"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L140" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L145" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="getText,Element,string,string"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#getText%2CElement%2Cstring%2Cstring"><span class="Identifier">getText</span></a><span class="Other">(</span><span class="Identifier">element</span><span class="Other">:</span> <a href="element.html#Element"><span class="Identifier">Element</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">strategy</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;css selector&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span>
+    <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">HttpRequestError</span><span class="Other">,</span> <span class="Identifier">SslError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span>
+    <span class="Identifier">TimeoutError</span><span class="Other">,</span> <span class="Identifier">ProtocolError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">OverflowError</span><span class="Other">,</span> <span class="Identifier">JsonParsingError</span><span class="Other">,</span>
+    <span class="Identifier">SeleniumServerException</span><span class="Other">,</span> <span class="Identifier">SeleniumNotFoundException</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+Find element from element and get inner text.
+&nbsp;&nbsp;<a
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L150"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L150" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="clearValue,Element"></a>
@@ -564,9 +605,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Clear <tt class="docutils literal"><span class="pre">TEXTAREA</span></tt> or <tt class="docutils literal"><span class="pre">text INPUT</span></tt> element's value.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L145"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L155"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L145" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L155" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="setValue,Element,string"></a>
@@ -578,9 +619,54 @@ class="link-seesrc" target="_blank">Source</a>
 
 Set value to <tt class="docutils literal"><span class="pre">TEXTAREA</span></tt> or <tt class="docutils literal"><span class="pre">text INPUT</span></tt> element.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L149"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L159"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L149" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L159" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="setValue,Element,string,string,string"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#setValue%2CElement%2Cstring%2Cstring%2Cstring"><span class="Identifier">setValue</span></a><span class="Other">(</span><span class="Identifier">element</span><span class="Other">:</span> <a href="element.html#Element"><span class="Identifier">Element</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+             <span class="Identifier">strategy</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;css selector&quot;</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span>
+    <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">HttpRequestError</span><span class="Other">,</span> <span class="Identifier">SslError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">TimeoutError</span><span class="Other">,</span>
+    <span class="Identifier">ProtocolError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">OverflowError</span><span class="Other">,</span> <span class="Identifier">JsonParsingError</span><span class="Other">,</span>
+    <span class="Identifier">SeleniumServerException</span><span class="Other">,</span> <span class="Identifier">SeleniumNotFoundException</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+Find element from element and set value.
+&nbsp;&nbsp;<a
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L167"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L167" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="value=,Element,string"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#value%3D%2CElement%2Cstring"><span class="Identifier">value=</span></a><span class="Other">(</span><span class="Identifier">element</span><span class="Other">:</span> <a href="element.html#Element"><span class="Identifier">Element</span></a><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span>
+    <span class="Identifier">HttpRequestError</span><span class="Other">,</span> <span class="Identifier">SslError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">TimeoutError</span><span class="Other">,</span> <span class="Identifier">ProtocolError</span><span class="Other">,</span>
+    <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">OverflowError</span><span class="Other">,</span> <span class="Identifier">JsonParsingError</span><span class="Other">,</span> <span class="Identifier">SeleniumServerException</span><span class="Other">,</span>
+    <span class="Identifier">SeleniumNotFoundException</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+Set value to <tt class="docutils literal"><span class="pre">TEXTAREA</span></tt> or <tt class="docutils literal"><span class="pre">text INPUT</span></tt> element.
+&nbsp;&nbsp;<a
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L172"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L172" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="value[]=,Element,string,string"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#value%5B%5D%3D%2CElement%2Cstring%2Cstring"><span class="Identifier">value[]=</span></a><span class="Other">(</span><span class="Identifier">element</span><span class="Other">:</span> <a href="element.html#Element"><span class="Identifier">Element</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span>
+    <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">HttpRequestError</span><span class="Other">,</span> <span class="Identifier">SslError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">TimeoutError</span><span class="Other">,</span>
+    <span class="Identifier">ProtocolError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">OverflowError</span><span class="Other">,</span> <span class="Identifier">JsonParsingError</span><span class="Other">,</span>
+    <span class="Identifier">SeleniumServerException</span><span class="Other">,</span> <span class="Identifier">SeleniumNotFoundException</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+Find element from element and set value.
+&nbsp;&nbsp;<a
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L176"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L176" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="getTagName,Element"></a>
@@ -592,9 +678,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Get element's tag name.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L157"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L180"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L157" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L180" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="getAttributeValue,Element,string"></a>
@@ -607,9 +693,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Get value of element's attribute.
 &nbsp;&nbsp;<a
-href="https://github.com/myamyu/selenimum/tree/aa023a9ab1043bb6c9944e421430343486233982/src/selenimum/element.nim#L162"
+href="https://github.com/myamyu/selenimum/tree/86aa5ff423573a70d8ba179113c191e20231551e/src/selenimum/element.nim#L185"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L162" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/myamyu/selenimum/edit/main/src/selenimum/element.nim#L185" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -622,7 +708,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-10-01 16:06:26 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-01-31 16:59:30 UTC</small>
       </div>
     </div>
   </div>
